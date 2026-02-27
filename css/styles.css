@@ -1431,13 +1431,25 @@ section h2::after {
   color: var(--text-soft);
 }
 
+.page-installatori .b2b-gallery .gallery-grid,
 .page-superfici .b2c-gallery .gallery-grid {
-  grid-template-columns: 1fr;
-  gap: 0.9rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
 }
 
+.page-installatori .b2b-gallery .gallery-grid figure,
 .page-superfici .b2c-gallery .gallery-grid figure {
   aspect-ratio: 1 / 1;
+}
+
+.page-installatori .b2b-gallery .gallery-grid img,
+.page-superfici .b2c-gallery .gallery-grid img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .page-superfici .b2c-contact .container {
@@ -1676,8 +1688,9 @@ textarea:focus-visible {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .page-installatori .b2b-gallery .gallery-grid,
   .page-superfici .b2c-gallery .gallery-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
