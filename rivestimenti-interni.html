@@ -189,32 +189,41 @@
         <h2 id="contacts-title">Richiedi informazioni</h2>
         <p>Compila il modulo per ricevere disponibilita prodotto e tempistiche.</p>
 
-        <form action="https://formspree.io/f/XXXXX" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/your_form_id" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="b2c">
+          <input type="hidden" name="form_origin" value="rivestimenti_interni">
+          <input type="hidden" name="form_context_message" value="Richiesta privata B2C inviata dalla pagina Rivestimenti interni">
+          <input type="hidden" name="subject" value="Richiesta privata B2C - Rivestimenti interni">
+
           <div class="form-field">
-            <label for="name">Nome e cognome</label>
-            <input type="text" id="name" name="name" autocomplete="name" required>
+            <label for="b2c_first_name">Nome</label>
+            <input type="text" id="b2c_first_name" name="first_name" autocomplete="given-name" required>
           </div>
 
           <div class="form-field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
+            <label for="b2c_last_name">Cognome</label>
+            <input type="text" id="b2c_last_name" name="last_name" autocomplete="family-name" required>
+          </div>
+
+          <div class="form-field">
+            <label for="b2c_email">Email</label>
+            <input type="email" id="b2c_email" name="email" autocomplete="email" required>
           </div>
 
           <input type="hidden" name="user_type" value="privato_b2c">
 
           <div class="form-field">
-            <label for="message">Messaggio</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="b2c_message">Messaggio</label>
+            <textarea id="b2c_message" name="message" rows="5" placeholder="Indicaci ambiente, metratura e finitura che preferisci: ti aiutiamo a definire il materiale necessario." required></textarea>
           </div>
 
           <div class="form-field checkbox-field">
-            <input type="checkbox" id="privacy" name="privacy" required>
-            <label for="privacy">Ho letto e accetto la <a href="#" rel="nofollow">Privacy Policy</a> (obbligatorio)</label>
+            <input type="checkbox" id="b2c_privacy" name="privacy" required>
+            <label for="b2c_privacy">Ho letto e accetto la <a href="#" rel="nofollow">Privacy Policy</a> (obbligatorio)</label>
           </div>
 
           <div class="form-field checkbox-field">
-            <input type="checkbox" id="marketing" name="marketing">
-            <label for="marketing">Acconsento a ricevere comunicazioni marketing (facoltativo)</label>
+            <input type="checkbox" id="b2c_marketing" name="marketing">
+            <label for="b2c_marketing">Acconsento a ricevere comunicazioni marketing (facoltativo)</label>
           </div>
 
           <button type="submit" class="btn btn-primary" data-track="lead_form">Invia richiesta</button>
@@ -230,18 +239,45 @@
 
   <footer class="site-footer">
     <div class="container">
-      <nav aria-label="Link legali">
-        <a href="#" rel="nofollow">Privacy Policy</a>
-        <a href="#" rel="nofollow">Cookie Policy</a>
-      </nav>
-      <p>WhatsApp: <a href="https://wa.me/393384519991" target="_blank" rel="noopener noreferrer">+39 338 451 9991</a> | Email: <a href="mailto:info@firenzedecori.it">info@firenzedecori.it</a></p>
-      <p>&copy; <span id="year">2026</span> Firenze Decori. Tutti i diritti riservati.</p>
+      <div class="footer-grid">
+        <nav class="footer-links" aria-label="Link interni principali">
+          <h3>Link interni</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fornitura-professionisti.html">Fornitura professionisti</a></li>
+            <li><a href="rivestimenti-interni.html">Rivestimenti interni</a></li>
+            <li><a href="index.html#contatti">Contatti</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-links" aria-label="Risorse utili">
+          <h3>Risorse</h3>
+          <ul>
+            <li><a href="assets/prova_catalogo.pdf" download="prova_catalogo.pdf">Scarica catalogo PDF</a></li>
+            <li><a href="rivestimenti-interni.html#calcolatore">Calcolatore pannelli</a></li>
+            <li><a href="form-inviato.html">Pagina conferma invio</a></li>
+          </ul>
+        </nav>
+
+        <section class="footer-links footer-contacts" aria-label="Contatti diretti">
+          <h3>Contatti diretti</h3>
+          <ul>
+            <li><a href="https://wa.me/393384519991" target="_blank" rel="noopener noreferrer">WhatsApp: +39 338 451 9991</a></li>
+            <li><a href="mailto:info@firenzedecori.it">Email: info@firenzedecori.it</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="footer-bottom">
+        <nav class="footer-legal" aria-label="Link legali">
+          <a href="#" rel="nofollow">Privacy Policy</a>
+          <a href="#" rel="nofollow">Cookie Policy</a>
+        </nav>
+        <p>&copy; <span id="year">2026</span> Firenze Decori. Tutti i diritti riservati.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Placeholder: inserire qui eventuali script di analytics -->
 </body>
 </html>
-
-
-

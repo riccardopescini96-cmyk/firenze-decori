@@ -284,72 +284,188 @@
     statusNode.textContent = message || '';
   }
 
-  function initContactForm() {
-    var form = document.querySelector('.contacts form');
-    if (!form) {
+  function isFormspreeEndpointConfigured(endpoint) {
+    if (!endpoint) {
+      return false;
+    }
+
+    var normalized = endpoint.toLowerCase();
+    return normalized.indexOf('xxxxx') === -1 && normalized.indexOf('your_form_id') === -1;
+  }
+
+  function initConditionalCompanyField(form) {
+    var userTypeNode = form.querySelector('[data-user-type]');
+    var companyFieldNode = form.querySelector('[data-company-field]');
+    var companyInput = companyFieldNode ? companyFieldNode.querySelector('input[name="company_name"]') : null;
+
+    if (!userTypeNode || !companyFieldNode || !companyInput) {
       return;
     }
 
-    var statusNode = form.querySelector('.form-status');
+    function syncCompanyVisibility() {
+      var userType = (userTypeNode.value || '').toLowerCase();
+      var needsCompany = userType === 'installatore' || userType === 'rivenditore' || userType === 'azienda_professionista';
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
+      companyFieldNode.hidden = !needsCompany;
+      companyFieldNode.classList.toggle('is-hidden', !needsCompany);
+      companyInput.required = needsCompany;
 
-      var endpoint = form.getAttribute('action') || '';
-      if (!endpoint || endpoint.indexOf('XXXXX') !== -1) {
-        setFormStatus(
-          statusNode,
-          'Configura l\'endpoint Formspree per inviare il modulo.',
-          'is-error'
-        );
-        return;
+      if (!needsCompany) {
+        companyInput.value = '';
       }
+    }
 
-      var submitButton = form.querySelector('[type="submit"]');
-      var formData = new FormData(form);
+    userTypeNode.addEventListener('change', syncCompanyVisibility);
+    syncCompanyVisibility();
+  }
 
-      setFormStatus(statusNode, 'Invio in corso...', '');
+  function buildThankYouUrl(form, formData) {
+    var thankYouPath = form.getAttribute('data-thank-you') || 'form-inviato.html';
+    var thankYouUrl = new URL(thankYouPath, window.location.href);
+    var firstName = (formData.get('first_name') || '').toString().trim();
+    var userType = (formData.get('user_type') || '').toString().trim();
+    var origin = (formData.get('form_origin') || '').toString().trim();
+    var companyName = (formData.get('company_name') || '').toString().trim();
 
-      if (submitButton) {
-        submitButton.disabled = true;
-      }
+    if (firstName) {
+      thankYouUrl.searchParams.set('nome', firstName);
+    }
 
-      fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json'
-        },
-        body: formData
-      })
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error('request_failed');
-          }
+    if (userType) {
+      thankYouUrl.searchParams.set('tipo', userType);
+    }
 
-          form.reset();
+    if (origin) {
+      thankYouUrl.searchParams.set('origine', origin);
+    }
+
+    if (companyName) {
+      thankYouUrl.searchParams.set('azienda', companyName);
+    }
+
+    return thankYouUrl.toString();
+  }
+
+  function initContactForms() {
+    var forms = document.querySelectorAll('.contacts form[data-formspree-form]');
+    if (!forms.length) {
+      return;
+    }
+
+    forms.forEach(function (form) {
+      initConditionalCompanyField(form);
+
+      var statusNode = form.querySelector('.form-status');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var endpoint = form.getAttribute('action') || '';
+        if (!isFormspreeEndpointConfigured(endpoint)) {
           setFormStatus(
             statusNode,
-            'Richiesta inviata con successo. Ti contatteremo al più presto.',
-            'is-success'
-          );
-
-          trackEvent('lead_form_submit', {
-            user_type: formData.get('user_type') || 'unknown'
-          });
-        })
-        .catch(function () {
-          setFormStatus(
-            statusNode,
-            'Invio non riuscito. Riprova tra qualche minuto.',
+            'Configura il Form ID Formspree per inviare il modulo.',
             'is-error'
           );
+          return;
+        }
+
+        var submitButton = form.querySelector('[type="submit"]');
+        var formData = new FormData(form);
+
+        setFormStatus(statusNode, 'Invio in corso...', '');
+
+        if (submitButton) {
+          submitButton.disabled = true;
+        }
+
+        fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json'
+          },
+          body: formData
         })
-        .finally(function () {
-          if (submitButton) {
-            submitButton.disabled = false;
-          }
-        });
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error('request_failed');
+            }
+
+            trackEvent('lead_form_submit', {
+              user_type: formData.get('user_type') || 'unknown',
+              origin: formData.get('form_origin') || form.getAttribute('data-form-context') || 'unknown'
+            });
+
+            window.location.assign(buildThankYouUrl(form, formData));
+          })
+          .catch(function () {
+            setFormStatus(
+              statusNode,
+              'Invio non riuscito. Riprova tra qualche minuto.',
+              'is-error'
+            );
+          })
+          .finally(function () {
+            if (submitButton) {
+              submitButton.disabled = false;
+            }
+          });
+      });
     });
+  }
+
+  function getThankYouAudienceLabel(audience) {
+    var normalized = (audience || '').toLowerCase();
+
+    if (normalized === 'installatore' || normalized === 'rivenditore' || normalized === 'azienda_professionista') {
+      return 'professionisti (B2B)';
+    }
+
+    if (normalized === 'privato' || normalized === 'privato_b2c') {
+      return 'privati (B2C)';
+    }
+
+    return 'contatto generico';
+  }
+
+  function initThankYouPage() {
+    var pageNode = document.querySelector('[data-thank-you-page]');
+    if (!pageNode) {
+      return;
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    var titleNode = pageNode.querySelector('[data-thankyou-title]');
+    var bodyNode = pageNode.querySelector('[data-thankyou-body]');
+    var detailsNode = pageNode.querySelector('[data-thankyou-meta]');
+    var firstName = (params.get('nome') || '').trim();
+    var audience = (params.get('tipo') || '').trim();
+    var companyName = (params.get('azienda') || '').trim();
+    var source = (params.get('origine') || '').trim();
+    var introText = firstName ? ('Grazie ' + firstName + ',') : 'Grazie,';
+    var audienceLabel = getThankYouAudienceLabel(audience);
+    var sourceLabel = source ? source.replace(/_/g, ' ') : 'sito web';
+    var details = [];
+
+    if (titleNode) {
+      titleNode.textContent = 'Form inviato correttamente';
+    }
+
+    if (bodyNode) {
+      bodyNode.textContent =
+        introText + ' abbiamo ricevuto la tua richiesta e il nostro team ti ricontattera al piu presto con le informazioni richieste.';
+    }
+
+    details.push('Tipo richiesta: ' + audienceLabel);
+    details.push('Origine: ' + sourceLabel);
+
+    if (companyName) {
+      details.push('Azienda: ' + companyName);
+    }
+
+    if (detailsNode) {
+      detailsNode.textContent = details.join(' | ');
+    }
   }
 
   function getCurrentPageKey() {
@@ -374,7 +490,8 @@
     var pageMap = {
       'index.html': 'Home',
       'fornitura-professionisti.html': 'Fornitura professionisti',
-      'rivestimenti-interni.html': 'Rivestimenti interni'
+      'rivestimenti-interni.html': 'Rivestimenti interni',
+      'form-inviato.html': 'Form inviato'
     };
     var pageKey = getCurrentPageKey();
     var items = [{ name: 'Home', path: 'index.html' }];
@@ -496,7 +613,8 @@
   initTrackedClicks();
   initHomeGallerySlideshow();
   initPanelCalculator();
-  initContactForm();
+  initContactForms();
+  initThankYouPage();
 })();
 
 

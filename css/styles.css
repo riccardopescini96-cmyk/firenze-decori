@@ -1477,6 +1477,10 @@ section h2::after {
   gap: 0.38rem;
 }
 
+.form-field.is-hidden {
+  display: none;
+}
+
 .form-field label {
   font-weight: 400;
   color: var(--brand-strong);
@@ -1546,6 +1550,54 @@ textarea {
   color: var(--error);
 }
 
+.page-thankyou .thank-you {
+  min-height: calc(100vh - 280px);
+  display: grid;
+  align-items: center;
+}
+
+.thank-you-card {
+  width: min(100%, 780px);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+  border-radius: var(--radius-l);
+  border: 1px solid rgba(21, 34, 53, 0.16);
+  background:
+    radial-gradient(circle at 82% 9%, rgba(200, 164, 107, 0.2), transparent 42%),
+    linear-gradient(158deg, rgba(255, 255, 255, 0.97), rgba(245, 239, 230, 0.94));
+  box-shadow: var(--shadow-soft);
+}
+
+.thank-you-kicker {
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--brand);
+  font-size: 0.83rem;
+  font-weight: 650;
+}
+
+.thank-you-card h1 {
+  margin-bottom: 0.55rem;
+}
+
+.thank-you-card p {
+  margin: 0.5rem 0;
+}
+
+.thank-you-meta {
+  margin-top: 0.75rem;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.thank-you-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
 .wa-float {
   position: fixed;
   right: 1rem;
@@ -1571,20 +1623,76 @@ textarea {
 .site-footer {
   margin-top: 1rem;
   padding: 2.2rem 0 2.8rem;
-  border-top: 1px solid rgba(21, 34, 53, 0.2);
-  background: linear-gradient(180deg, rgba(237, 231, 220, 0.72), rgba(229, 221, 205, 0.72));
+  border-top: 1px solid rgba(200, 164, 107, 0.45);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(200, 164, 107, 0.2), transparent 38%),
+    radial-gradient(circle at 86% 8%, rgba(79, 118, 173, 0.2), transparent 42%),
+    linear-gradient(160deg, #152235 0%, #101b2b 48%, #0c1421 100%);
+  color: #e8eef7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.site-footer nav {
+.site-footer .container {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.footer-links h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.02rem;
+  color: #f6fbff;
+  letter-spacing: 0.03em;
+}
+
+.footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.footer-links li {
+  margin: 0;
+}
+
+.footer-links a {
+  color: #d5deeb;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer a {
+  color: #d5deeb;
+}
+
+.footer-links a:hover,
+.site-footer a:hover {
+  color: #f0c98a;
+}
+
+.footer-bottom {
+  display: grid;
+  gap: 0.55rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.footer-legal {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 0.9rem;
+  gap: 0.8rem;
 }
 
-.site-footer p {
-  margin: 0.5rem 0;
-  font-size: 1rem;
+.footer-bottom p {
+  margin: 0;
+  color: #b9c6d9;
+  font-size: 0.96rem;
 }
 
 a:focus-visible,
@@ -1692,6 +1800,20 @@ textarea:focus-visible {
   .page-superfici .b2c-gallery .gallery-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .footer-links.footer-contacts {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -1732,6 +1854,15 @@ textarea:focus-visible {
 
   .page-superfici .b2c-direct-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .footer-links.footer-contacts {
+    grid-column: auto;
   }
 }
 
