@@ -483,6 +483,7 @@ section h2::after {
   border-color: rgba(21, 34, 53, 0.36);
 }
 
+.btn-consult-blue,
 .page-home .btn-hero-consult {
   color: #fff;
   border-color: rgba(20, 47, 84, 0.72);
@@ -490,6 +491,7 @@ section h2::after {
   box-shadow: 0 14px 26px rgba(15, 45, 77, 0.28);
 }
 
+.btn-consult-blue::after,
 .page-home .btn-hero-consult::after {
   content: "\2192";
   margin-left: 0.4rem;
@@ -497,6 +499,7 @@ section h2::after {
   line-height: 1;
 }
 
+.btn-consult-blue:hover,
 .page-home .btn-hero-consult:hover {
   color: #fff;
   background: linear-gradient(135deg, #224974, #143553);
