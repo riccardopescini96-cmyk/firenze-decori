@@ -6,6 +6,10 @@
   var navWrapper = document.querySelector('.nav-wrapper');
   var desktopMinWidth = 768;
 
+  function isDesktopViewport() {
+    return window.innerWidth >= desktopMinWidth;
+  }
+
   function setNavOpen(isOpen) {
     body.classList.toggle('nav-open', isOpen);
 
@@ -14,7 +18,7 @@
     }
 
     if (navWrapper) {
-      navWrapper.setAttribute('aria-hidden', String(!isOpen));
+      navWrapper.setAttribute('aria-hidden', String(isDesktopViewport() ? false : !isOpen));
     }
   }
 
@@ -46,7 +50,7 @@
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= desktopMinWidth) {
+      if (isDesktopViewport()) {
         setNavOpen(false);
       }
     });
@@ -289,6 +293,8 @@
     var statusNode = form.querySelector('.form-status');
 
     form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
       var endpoint = form.getAttribute('action') || '';
       if (!endpoint || endpoint.indexOf('XXXXX') !== -1) {
         setFormStatus(
@@ -298,8 +304,6 @@
         );
         return;
       }
-
-      event.preventDefault();
 
       var submitButton = form.querySelector('[type="submit"]');
       var formData = new FormData(form);
@@ -369,8 +373,8 @@
   function getBreadcrumbItems() {
     var pageMap = {
       'index.html': 'Home',
-      'installatori.html': 'Installatori',
-      'superfici.html': 'Superfici'
+      'fornitura-professionisti.html': 'Fornitura professionisti',
+      'rivestimenti-interni.html': 'Rivestimenti interni'
     };
     var pageKey = getCurrentPageKey();
     var items = [{ name: 'Home', path: 'index.html' }];
@@ -494,5 +498,8 @@
   initPanelCalculator();
   initContactForm();
 })();
+
+
+
 
 
