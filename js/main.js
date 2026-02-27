@@ -348,6 +348,145 @@
     });
   }
 
+  function getCurrentPageKey() {
+    var pathname = window.location.pathname || '';
+    var cleanPath = pathname.split('?')[0].split('#')[0];
+
+    if (!cleanPath || cleanPath === '/') {
+      return 'index.html';
+    }
+
+    var segments = cleanPath.split('/').filter(Boolean);
+    var lastSegment = segments[segments.length - 1] || '';
+
+    if (!lastSegment || !/\.html?$/i.test(lastSegment)) {
+      return 'index.html';
+    }
+
+    return lastSegment.toLowerCase();
+  }
+
+  function getBreadcrumbItems() {
+    var pageMap = {
+      'index.html': 'Home',
+      'installatori.html': 'Installatori',
+      'superfici.html': 'Superfici'
+    };
+    var pageKey = getCurrentPageKey();
+    var items = [{ name: 'Home', path: 'index.html' }];
+
+    if (pageKey !== 'index.html') {
+      var currentLabel = pageMap[pageKey];
+
+      if (!currentLabel) {
+        var h1 = document.querySelector('main h1');
+        currentLabel = h1 ? (h1.textContent || '').trim() : 'Pagina';
+      }
+
+      items.push({
+        name: currentLabel,
+        path: pageKey
+      });
+    }
+
+    return items;
+  }
+
+  function injectBreadcrumbStructuredData(items) {
+    if (!items || !items.length) {
+      return;
+    }
+
+    var existingNode = document.getElementById('dynamic-breadcrumb-jsonld');
+    if (existingNode) {
+      existingNode.remove();
+    }
+
+    var siteBaseUrl = 'https://www.firenzedecori.it';
+    var listItems = items.map(function (item, index) {
+      var itemUrl = item.path === 'index.html'
+        ? siteBaseUrl + '/'
+        : siteBaseUrl + '/' + item.path;
+
+      return {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: itemUrl
+      };
+    });
+
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'dynamic-breadcrumb-jsonld';
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: listItems
+    });
+
+    document.head.appendChild(script);
+  }
+
+  function initBreadcrumbs() {
+    var main = document.querySelector('main');
+    if (!main || document.querySelector('.breadcrumbs')) {
+      return;
+    }
+
+    var items = getBreadcrumbItems();
+    if (!items.length) {
+      return;
+    }
+
+    if (getCurrentPageKey() === 'index.html') {
+      injectBreadcrumbStructuredData(items);
+      return;
+    }
+
+    var nav = document.createElement('nav');
+    nav.className = 'breadcrumbs';
+    nav.setAttribute('aria-label', 'Breadcrumb');
+
+    var container = document.createElement('div');
+    container.className = 'container';
+
+    var list = document.createElement('ol');
+    list.className = 'breadcrumbs-list';
+
+    items.forEach(function (item, index) {
+      var listItem = document.createElement('li');
+      var isCurrent = index === items.length - 1;
+
+      if (isCurrent) {
+        var current = document.createElement('span');
+        current.textContent = item.name;
+        current.setAttribute('aria-current', 'page');
+        listItem.appendChild(current);
+      } else {
+        var link = document.createElement('a');
+        link.href = item.path;
+        link.textContent = item.name;
+        listItem.appendChild(link);
+      }
+
+      list.appendChild(listItem);
+    });
+
+    container.appendChild(list);
+    nav.appendChild(container);
+
+    var firstSection = main.querySelector('section');
+    if (firstSection) {
+      main.insertBefore(nav, firstSection);
+    } else {
+      main.prepend(nav);
+    }
+
+    injectBreadcrumbStructuredData(items);
+  }
+
+  initBreadcrumbs();
   initMobileNav();
   setFooterYear();
   initTrackedClicks();
