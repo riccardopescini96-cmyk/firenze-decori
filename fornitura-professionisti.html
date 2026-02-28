@@ -219,10 +219,14 @@
         <h2 id="contacts-title">Richiedi contatto commerciale</h2>
         <p>Compila il modulo: ti ricontattiamo per condizioni B2B e disponibilita.</p>
 
-        <form class="contact-form" action="https://formspree.io/f/your_form_id" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="b2b">
+        <form id="form-b2b" class="contact-form" action="https://formspree.io/f/xeelddyr" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="b2b">
           <input type="hidden" name="form_origin" value="fornitura_professionisti">
-          <input type="hidden" name="form_context_message" value="Richiesta commerciale B2B inviata dalla pagina Fornitura professionisti">
-          <input type="hidden" name="subject" value="Richiesta commerciale B2B - Fornitura professionisti">
+          <input type="hidden" name="page_url" value="">
+          <input type="hidden" name="submitted_at" value="">
+          <input type="hidden" name="form_target" value="">
+          <input type="hidden" name="_subject" value="">
+          <input type="hidden" name="_replyto" value="">
+          <input type="hidden" name="email_preview" value="">
 
           <div class="form-field">
             <label for="b2b_first_name">Nome</label>
@@ -236,7 +240,7 @@
 
           <div class="form-field">
             <label for="b2b_company_name">Azienda</label>
-            <input type="text" id="b2b_company_name" name="company_name" autocomplete="organization" required>
+            <input type="text" id="b2b_company_name" name="company" autocomplete="organization" required>
           </div>
 
           <div class="form-field">
@@ -244,11 +248,10 @@
             <input type="email" id="b2b_email" name="email" autocomplete="email" required>
           </div>
 
-          <input type="hidden" name="user_type" value="azienda_professionista">
-
           <div class="form-field">
             <label for="b2b_message">Messaggio</label>
-            <textarea id="b2b_message" name="message" rows="5" placeholder="Descrivi la tua attivita, la zona in cui operi e il tipo di fornitura B2B che stai cercando." required></textarea>
+            <textarea id="b2b_message" name="message" rows="5" placeholder="Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e schede tecniche.">Richiedo informazioni.
+</textarea>
           </div>
 
           <div class="form-field checkbox-field">
@@ -290,7 +293,6 @@
           <ul>
             <li><a href="assets/prova_catalogo.pdf" download="prova_catalogo.pdf">Scarica catalogo PDF</a></li>
             <li><a href="rivestimenti-interni.html#calcolatore">Calcolatore pannelli</a></li>
-            <li><a href="form-inviato.html">Pagina conferma invio</a></li>
           </ul>
         </nav>
 

@@ -65,6 +65,59 @@
     yearNode.textContent = String(new Date().getFullYear());
   }
 
+  function initFooterLinks() {
+    var footerLinks = document.querySelectorAll('.site-footer .footer-links a[href]');
+    if (!footerLinks.length) {
+      return;
+    }
+
+    var currentPageKey = getCurrentPageKey();
+
+    function getLinkPageKey(href) {
+      if (!href) {
+        return '';
+      }
+
+      var cleanHref = href.split('?')[0].split('#')[0];
+
+      if (!cleanHref) {
+        return 'index.html';
+      }
+
+      var segments = cleanHref.split('/').filter(Boolean);
+      var lastSegment = segments[segments.length - 1] || '';
+
+      if (!lastSegment) {
+        return 'index.html';
+      }
+
+      if (!/\.html?$/i.test(lastSegment)) {
+        return '';
+      }
+
+      return lastSegment.toLowerCase();
+    }
+
+    footerLinks.forEach(function (link) {
+      var href = link.getAttribute('href') || '';
+      var hasHash = href.indexOf('#') !== -1;
+      var linkPageKey = getLinkPageKey(href);
+      var shouldRemove = linkPageKey === 'form-inviato.html' || (!hasHash && linkPageKey === currentPageKey);
+
+      if (!shouldRemove) {
+        return;
+      }
+
+      var listItem = link.closest('li');
+      if (listItem) {
+        listItem.remove();
+        return;
+      }
+
+      link.remove();
+    });
+  }
+
   function trackEvent(name, details) {
     if (!name) {
       return;
@@ -293,46 +346,178 @@
     return normalized.indexOf('xxxxx') === -1 && normalized.indexOf('your_form_id') === -1;
   }
 
-  function initConditionalCompanyField(form) {
-    var userTypeNode = form.querySelector('[data-user-type]');
-    var companyFieldNode = form.querySelector('[data-company-field]');
-    var companyInput = companyFieldNode ? companyFieldNode.querySelector('input[name="company_name"]') : null;
+  function ensureFormStatusNode(form) {
+    var statusNode = form.querySelector('.form-status');
+    if (statusNode) {
+      return statusNode;
+    }
 
-    if (!userTypeNode || !companyFieldNode || !companyInput) {
+    statusNode = document.createElement('div');
+    statusNode.className = 'form-status';
+    statusNode.setAttribute('role', 'status');
+    statusNode.setAttribute('aria-live', 'polite');
+
+    var submitButton = form.querySelector('[type="submit"]');
+    if (submitButton && submitButton.parentNode === form) {
+      form.insertBefore(statusNode, submitButton.nextSibling);
+    } else {
+      form.appendChild(statusNode);
+    }
+
+    return statusNode;
+  }
+
+  function getFieldNode(form, fieldName) {
+    if (!form || !form.elements) {
+      return null;
+    }
+
+    return form.elements[fieldName] || null;
+  }
+
+  function getFieldValue(form, fieldName) {
+    var field = getFieldNode(form, fieldName);
+    if (!field) {
+      return '';
+    }
+
+    if (typeof field.length === 'number' && !field.tagName) {
+      for (var index = 0; index < field.length; index += 1) {
+        if (field[index] && field[index].checked) {
+          return (field[index].value || '').toString().trim();
+        }
+      }
+
+      return '';
+    }
+
+    return (field.value || '').toString().trim();
+  }
+
+  function isFieldChecked(form, fieldName) {
+    var field = getFieldNode(form, fieldName);
+    if (!field) {
+      return false;
+    }
+
+    if (typeof field.length === 'number' && !field.tagName) {
+      for (var index = 0; index < field.length; index += 1) {
+        if (field[index] && field[index].checked) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    return Boolean(field.checked);
+  }
+
+  function setHiddenFieldValue(form, fieldName, value) {
+    var field = form.querySelector('input[type="hidden"][name="' + fieldName + '"]');
+
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'hidden';
+      field.name = fieldName;
+      form.appendChild(field);
+    }
+
+    field.value = value || '';
+    return field;
+  }
+
+  function getGenericSubject(requestType) {
+    var normalized = (requestType || '').toLowerCase();
+
+    if (normalized === 'installatore') {
+      return 'Firenze Decori — Richiesta Installatore';
+    }
+
+    if (normalized === 'rivenditore') {
+      return 'Firenze Decori — Richiesta Rivenditore';
+    }
+
+    if (normalized === 'privato') {
+      return 'Firenze Decori — Richiesta Privato';
+    }
+
+    return 'Firenze Decori — Richiesta informazioni (Generico)';
+  }
+
+  function getFormSubject(targetName, form) {
+    if (targetName === 'b2c') {
+      return 'Firenze Decori — Richiesta informazioni (Privato/B2C)';
+    }
+
+    if (targetName === 'b2b') {
+      return 'Firenze Decori — Richiesta commerciale (B2B)';
+    }
+
+    return getGenericSubject(getFieldValue(form, 'request_type'));
+  }
+
+  function buildEmailPreview(payload) {
+    var fullName = [payload.first_name, payload.last_name].filter(Boolean).join(' ').trim();
+
+    return [
+      'Target: ' + (payload.form_target || '-'),
+      'Pagina: ' + (payload.page_url || '-'),
+      'Nome: ' + (fullName || '-'),
+      'Email: ' + (payload.email || '-'),
+      'Azienda: ' + (payload.company || '-'),
+      'Tipologia: ' + (payload.request_type || '-'),
+      'Marketing: ' + (payload.marketing || 'NO'),
+      '',
+      'Messaggio:',
+      payload.message || '-'
+    ].join('\n');
+  }
+
+  function syncGenericMessagePlaceholder(form) {
+    var requestTypeNode = form.querySelector('[name="request_type"]');
+    var messageNode = form.querySelector('textarea[name="message"]');
+
+    if (!requestTypeNode || !messageNode) {
       return;
     }
 
-    function syncCompanyVisibility() {
-      var userType = (userTypeNode.value || '').toLowerCase();
-      var needsCompany = userType === 'installatore' || userType === 'rivenditore' || userType === 'azienda_professionista';
+    function updatePlaceholder() {
+      var requestType = (requestTypeNode.value || '').toLowerCase();
+      var isProfessional = requestType === 'installatore' || requestType === 'rivenditore';
 
-      companyFieldNode.hidden = !needsCompany;
-      companyFieldNode.classList.toggle('is-hidden', !needsCompany);
-      companyInput.required = needsCompany;
-
-      if (!needsCompany) {
-        companyInput.value = '';
-      }
+      messageNode.placeholder = isProfessional
+        ? 'Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e materiali tecnici.'
+        : 'Indicaci ambiente, metratura e finitura che preferisci: ti aiutiamo a definire il materiale necessario.';
     }
 
-    userTypeNode.addEventListener('change', syncCompanyVisibility);
-    syncCompanyVisibility();
+    requestTypeNode.addEventListener('change', updatePlaceholder);
+    updatePlaceholder();
   }
 
-  function buildThankYouUrl(form, formData) {
+  function setMessagePlaceholder(form, placeholder) {
+    var messageNode = form.querySelector('textarea[name="message"]');
+    if (!messageNode || !placeholder) {
+      return;
+    }
+
+    messageNode.placeholder = placeholder;
+  }
+
+  function buildThankYouUrl(form, payload, targetName) {
     var thankYouPath = form.getAttribute('data-thank-you') || 'form-inviato.html';
     var thankYouUrl = new URL(thankYouPath, window.location.href);
-    var firstName = (formData.get('first_name') || '').toString().trim();
-    var userType = (formData.get('user_type') || '').toString().trim();
-    var origin = (formData.get('form_origin') || '').toString().trim();
-    var companyName = (formData.get('company_name') || '').toString().trim();
+    var firstName = payload.first_name || '';
+    var requestType = payload.request_type || targetName || '';
+    var origin = payload.form_origin || '';
+    var companyName = payload.company || '';
 
     if (firstName) {
       thankYouUrl.searchParams.set('nome', firstName);
     }
 
-    if (userType) {
-      thankYouUrl.searchParams.set('tipo', userType);
+    if (requestType) {
+      thankYouUrl.searchParams.set('tipo', requestType);
     }
 
     if (origin) {
@@ -346,83 +531,155 @@
     return thankYouUrl.toString();
   }
 
-  function initContactForms() {
-    var forms = document.querySelectorAll('.contacts form[data-formspree-form]');
-    if (!forms.length) {
+  function buildFormPayload(form, targetName) {
+    var messageValue = getFieldValue(form, 'message') || 'Richiedo informazioni.';
+    var payload = {
+      first_name: getFieldValue(form, 'first_name'),
+      last_name: getFieldValue(form, 'last_name'),
+      email: getFieldValue(form, 'email'),
+      message: messageValue,
+      form_origin: getFieldValue(form, 'form_origin'),
+      page_url: window.location.href,
+      submitted_at: new Date().toISOString(),
+      form_target: targetName,
+      _subject: getFormSubject(targetName, form),
+      _replyto: getFieldValue(form, 'email'),
+      marketing: isFieldChecked(form, 'marketing') ? 'SI' : 'NO',
+      privacy: isFieldChecked(form, 'privacy') ? 'SI' : 'NO'
+    };
+
+    if (targetName === 'generico') {
+      payload.request_type = getFieldValue(form, 'request_type');
+    }
+
+    if (targetName === 'b2b') {
+      payload.company = getFieldValue(form, 'company');
+    }
+
+    payload.email_preview = buildEmailPreview(payload);
+
+    setHiddenFieldValue(form, 'page_url', payload.page_url);
+    setHiddenFieldValue(form, 'submitted_at', payload.submitted_at);
+    setHiddenFieldValue(form, 'form_target', payload.form_target);
+    setHiddenFieldValue(form, '_subject', payload._subject);
+    setHiddenFieldValue(form, '_replyto', payload._replyto);
+    setHiddenFieldValue(form, 'email_preview', payload.email_preview);
+
+    return payload;
+  }
+
+  function attachFormspree(formSelector, endpointUrl, targetName, options) {
+    var form = document.querySelector(formSelector);
+    if (!form) {
       return;
     }
 
-    forms.forEach(function (form) {
-      initConditionalCompanyField(form);
+    var config = options || {};
+    var statusNode = ensureFormStatusNode(form);
 
-      var statusNode = form.querySelector('.form-status');
+    form.setAttribute('action', endpointUrl);
+    form.setAttribute('method', 'POST');
 
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
+    if (targetName === 'generico') {
+      syncGenericMessagePlaceholder(form);
+    } else if (config.messagePlaceholder) {
+      setMessagePlaceholder(form, config.messagePlaceholder);
+    }
 
-        var endpoint = form.getAttribute('action') || '';
-        if (!isFormspreeEndpointConfigured(endpoint)) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var endpoint = form.getAttribute('action') || endpointUrl || '';
+      if (!isFormspreeEndpointConfigured(endpoint)) {
+        setFormStatus(statusNode, 'Configura il Form ID Formspree per inviare il modulo.', 'is-error');
+        return;
+      }
+
+      if (typeof form.reportValidity === 'function' && !form.reportValidity()) {
+        return;
+      }
+
+      if (!isFieldChecked(form, 'privacy')) {
+        setFormStatus(statusNode, 'Errore nell\'invio. Riprova o scrivici su WhatsApp.', 'is-error');
+        return;
+      }
+
+      var submitButton = form.querySelector('[type="submit"]');
+      var payload = buildFormPayload(form, targetName);
+      var formData = new FormData(form);
+
+      setFormStatus(statusNode, 'Invio in corso...', '');
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json'
+        },
+        body: formData
+      })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('request_failed');
+          }
+
+          setFormStatus(statusNode, 'Grazie! Ti risponderemo entro 24 ore.', 'is-success');
+
+          if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+            window.dataLayer.push({
+              event: 'lead_submit',
+              form_target: targetName
+            });
+          }
+
+          var thankYouUrl = buildThankYouUrl(form, payload, targetName);
+          if (thankYouUrl) {
+            window.setTimeout(function () {
+              window.location.assign(thankYouUrl);
+            }, 700);
+          }
+        })
+        .catch(function () {
           setFormStatus(
             statusNode,
-            'Configura il Form ID Formspree per inviare il modulo.',
+            'Errore nell\'invio. Riprova o scrivici su WhatsApp.',
             'is-error'
           );
-          return;
-        }
-
-        var submitButton = form.querySelector('[type="submit"]');
-        var formData = new FormData(form);
-
-        setFormStatus(statusNode, 'Invio in corso...', '');
-
-        if (submitButton) {
-          submitButton.disabled = true;
-        }
-
-        fetch(endpoint, {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json'
-          },
-          body: formData
         })
-          .then(function (response) {
-            if (!response.ok) {
-              throw new Error('request_failed');
-            }
+        .finally(function () {
+          if (submitButton) {
+            submitButton.disabled = false;
+          }
+        });
+    });
+  }
 
-            trackEvent('lead_form_submit', {
-              user_type: formData.get('user_type') || 'unknown',
-              origin: formData.get('form_origin') || form.getAttribute('data-form-context') || 'unknown'
-            });
-
-            window.location.assign(buildThankYouUrl(form, formData));
-          })
-          .catch(function () {
-            setFormStatus(
-              statusNode,
-              'Invio non riuscito. Riprova tra qualche minuto.',
-              'is-error'
-            );
-          })
-          .finally(function () {
-            if (submitButton) {
-              submitButton.disabled = false;
-            }
-          });
-      });
+  function initContactForms() {
+    attachFormspree('#form-generico', 'https://formspree.io/f/mvzbyyjn', 'generico');
+    attachFormspree('#form-b2c', 'https://formspree.io/f/xgolqqgr', 'b2c', {
+      messagePlaceholder: 'Indicaci in breve il tuo progetto (ambiente, metratura, finitura).'
+    });
+    attachFormspree('#form-b2b', 'https://formspree.io/f/xeelddyr', 'b2b', {
+      messagePlaceholder: 'Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e schede tecniche.'
     });
   }
 
   function getThankYouAudienceLabel(audience) {
     var normalized = (audience || '').toLowerCase();
 
-    if (normalized === 'installatore' || normalized === 'rivenditore' || normalized === 'azienda_professionista') {
+    if (normalized === 'installatore' || normalized === 'rivenditore' || normalized === 'b2b') {
       return 'professionisti (B2B)';
     }
 
-    if (normalized === 'privato' || normalized === 'privato_b2c') {
+    if (normalized === 'privato' || normalized === 'b2c') {
       return 'privati (B2C)';
+    }
+
+    if (normalized === 'generico') {
+      return 'contatto generico';
     }
 
     return 'contatto generico';
@@ -607,14 +864,23 @@
     injectBreadcrumbStructuredData(items);
   }
 
-  initBreadcrumbs();
-  initMobileNav();
-  setFooterYear();
-  initTrackedClicks();
-  initHomeGallerySlideshow();
-  initPanelCalculator();
-  initContactForms();
-  initThankYouPage();
+  function initializeApp() {
+    initBreadcrumbs();
+    initMobileNav();
+    setFooterYear();
+    initFooterLinks();
+    initTrackedClicks();
+    initHomeGallerySlideshow();
+    initPanelCalculator();
+    initContactForms();
+    initThankYouPage();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+  } else {
+    initializeApp();
+  }
 })();
 
 

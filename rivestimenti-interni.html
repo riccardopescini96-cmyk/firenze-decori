@@ -189,10 +189,14 @@
         <h2 id="contacts-title">Richiedi informazioni</h2>
         <p>Compila il modulo per ricevere disponibilita prodotto e tempistiche.</p>
 
-        <form class="contact-form" action="https://formspree.io/f/your_form_id" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="b2c">
+        <form id="form-b2c" class="contact-form" action="https://formspree.io/f/xgolqqgr" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="b2c">
           <input type="hidden" name="form_origin" value="rivestimenti_interni">
-          <input type="hidden" name="form_context_message" value="Richiesta privata B2C inviata dalla pagina Rivestimenti interni">
-          <input type="hidden" name="subject" value="Richiesta privata B2C - Rivestimenti interni">
+          <input type="hidden" name="page_url" value="">
+          <input type="hidden" name="submitted_at" value="">
+          <input type="hidden" name="form_target" value="">
+          <input type="hidden" name="_subject" value="">
+          <input type="hidden" name="_replyto" value="">
+          <input type="hidden" name="email_preview" value="">
 
           <div class="form-field">
             <label for="b2c_first_name">Nome</label>
@@ -209,11 +213,10 @@
             <input type="email" id="b2c_email" name="email" autocomplete="email" required>
           </div>
 
-          <input type="hidden" name="user_type" value="privato_b2c">
-
           <div class="form-field">
             <label for="b2c_message">Messaggio</label>
-            <textarea id="b2c_message" name="message" rows="5" placeholder="Indicaci ambiente, metratura e finitura che preferisci: ti aiutiamo a definire il materiale necessario." required></textarea>
+            <textarea id="b2c_message" name="message" rows="5" placeholder="Indicaci in breve il tuo progetto (ambiente, metratura, finitura).">Richiedo informazioni.
+</textarea>
           </div>
 
           <div class="form-field checkbox-field">
@@ -255,7 +258,6 @@
           <ul>
             <li><a href="assets/prova_catalogo.pdf" download="prova_catalogo.pdf">Scarica catalogo PDF</a></li>
             <li><a href="rivestimenti-interni.html#calcolatore">Calcolatore pannelli</a></li>
-            <li><a href="form-inviato.html">Pagina conferma invio</a></li>
           </ul>
         </nav>
 

@@ -1,6 +1,8 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap");
 
 :root {
+  --font-sans: "Manrope", "Segoe UI", "Trebuchet MS", sans-serif;
+  --font-serif: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
   --bg: #f5f2ec;
   --bg-soft: #ece6db;
   --surface: #ffffff;
@@ -42,7 +44,7 @@ html {
 body {
   margin: 0;
   color: var(--text);
-  font-family: "Manrope", "Segoe UI", "Trebuchet MS", sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.68;
   background:
     radial-gradient(circle at 9% 16%, rgba(31, 47, 70, 0.15), transparent 40%),
@@ -72,7 +74,7 @@ h3 {
   margin-top: 0;
   line-height: 1.12;
   letter-spacing: 0.02em;
-  font-family: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
+  font-family: var(--font-serif);
   color: #1b2738;
 }
 
@@ -211,7 +213,7 @@ body.nav-open {
   border-radius: 12px;
   text-decoration: none;
   color: var(--text);
-  font-weight: 650;
+  font-weight: 600;
   font-size: 1.02rem;
   letter-spacing: 0.01em;
 }
@@ -674,7 +676,7 @@ section h2::after {
   justify-content: center;
   text-align: center;
   font-size: 0.9rem;
-  font-weight: 750;
+  font-weight: 700;
   letter-spacing: 0.01em;
 }
 
@@ -767,6 +769,10 @@ section h2::after {
   margin-top: clamp(0.7rem, 1.2vw, 1rem);
 }
 
+.page-home .pathways {
+  padding-top: clamp(1rem, 1.9vw, 1.4rem);
+}
+
 .card {
   height: 100%;
   display: flex;
@@ -849,6 +855,85 @@ section h2::after {
   font-size: 1.02rem;
 }
 
+.page-home .pathway-card {
+  padding: clamp(1.15rem, 2vw, 1.5rem);
+  background:
+    radial-gradient(circle at top right, rgba(200, 164, 107, 0.18), transparent 32%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(244, 238, 228, 0.9));
+}
+
+.page-home .pathway-card-b2b {
+  border-color: rgba(21, 34, 53, 0.22);
+  box-shadow: 0 18px 34px rgba(16, 30, 47, 0.12);
+}
+
+.page-home .pathway-card-b2b::before {
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-strong), var(--accent));
+}
+
+.page-home .pathway-card-b2b .home-card-kicker {
+  color: var(--brand-strong);
+}
+
+.page-home .pathway-question {
+  display: inline-block;
+  margin-bottom: 0.62rem;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.28rem, 0.7vw + 1.02rem, 1.62rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: var(--brand-strong);
+  white-space: nowrap;
+}
+
+.page-home .pathway-lead {
+  margin-bottom: 1rem;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.page-home .pathway-link {
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 0.2rem;
+  border-top: 0;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.page-home .pathway-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--brand-strong);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.page-home .pathway-link-label::after {
+  content: "\2192";
+  font-size: 0.92em;
+  transition: transform 0.2s ease;
+}
+
+.page-home .pathway-link:hover .pathway-link-label::after,
+.page-home .pathway-link:focus-visible .pathway-link-label::after {
+  transform: translateX(4px);
+}
+
+.page-home .pathway-link:hover .pathway-link-label,
+.page-home .pathway-link:focus-visible .pathway-link-label {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
 .page-home .home-values {
   padding-top: clamp(0.9rem, 1.8vw, 1.35rem);
 }
@@ -889,6 +974,8 @@ section h2::after {
 
 .page-home .home-value-card {
   height: 100%;
+  display: flex;
+  flex-direction: column;
   padding: var(--card-padding);
   border-radius: var(--radius-m);
   border: 1px solid rgba(21, 34, 53, 0.16);
@@ -896,25 +983,94 @@ section h2::after {
   box-shadow: var(--shadow-soft);
 }
 
+.page-home .home-value-card-toggle {
+  overflow: hidden;
+}
+
+.page-home .home-value-summary {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.page-home .home-value-summary::-webkit-details-marker {
+  display: none;
+}
+
 .page-home .home-value-title {
   position: relative;
-  padding-left: 1.15rem;
-  margin: 0 0 0.32rem;
-  font-size: clamp(1.03rem, 0.45vw + 0.92rem, 1.24rem);
+  flex: 1 1 auto;
+  padding-left: 1.7rem;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.06rem, 0.55vw + 0.94rem, 1.28rem);
+  font-weight: 800;
+  line-height: 1.22;
+  color: var(--brand-strong);
 }
 
 .page-home .home-value-title::before {
-  content: "\2726";
+  content: "";
   position: absolute;
   left: 0;
-  top: 0.02rem;
-  color: var(--accent);
-  font-size: 0.82rem;
+  top: 0.34rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #d8b886);
+  box-shadow: 0 0 0 5px rgba(200, 164, 107, 0.16);
 }
 
-.page-home .home-value-card p {
+.page-home .home-value-toggle-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-top: 0.05rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 53, 0.12);
+  background: rgba(21, 34, 53, 0.05);
+}
+
+.page-home .home-value-toggle-icon::before,
+.page-home .home-value-toggle-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.68rem;
+  height: 1.5px;
+  background: var(--brand-strong);
+  transform: translate(-50%, -50%);
+}
+
+.page-home .home-value-toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.page-home .home-value-card-toggle[open] .home-value-toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.page-home .home-value-details {
+  margin-top: 0;
+}
+
+.page-home .home-value-details p {
   margin: 0;
+  margin-top: 0.8rem;
+  padding-top: 0.78rem;
+  border-top: 1px solid rgba(21, 34, 53, 0.1);
   color: var(--text-soft);
+  font-size: 0.96rem;
+  line-height: 1.5;
 }
 
 .features-main {
@@ -1574,7 +1730,7 @@ textarea {
   letter-spacing: 0.09em;
   color: var(--brand);
   font-size: 0.83rem;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .thank-you-card h1 {
@@ -1759,6 +1915,10 @@ textarea:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .page-home .pathways .cards-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+
   .page-installatori .proof-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1919,6 +2079,10 @@ textarea:focus-visible {
     max-width: 100%;
     font-size: clamp(1.66rem, 5.3vw, 1.98rem);
     margin-bottom: 0.78rem;
+  }
+
+  .page-home .pathway-question {
+    white-space: normal;
   }
 
   .hero .hero-lead {
