@@ -148,124 +148,142 @@
   }
 
   function initHomeGallerySlideshow() {
-    var slider = document.querySelector('.home-gallery .gallery-grid[data-mobile-slideshow]');
-    if (!slider) {
+    var sliders = document.querySelectorAll('.hero-slider');
+    if (!sliders.length) {
       return;
     }
 
-    var slides = slider.querySelectorAll('figure');
-    var dots = document.querySelectorAll('.home-gallery .gallery-dot');
-    var mobileQuery = window.matchMedia('(max-width: 767px)');
-    var reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var activeIndex = 0;
-    var autoTimer = null;
-    var scrollTimer = null;
+    sliders.forEach(function (slider) {
+      var track = slider.querySelector('[data-mobile-slideshow]');
+      var dots = Array.from(slider.querySelectorAll('.gallery-dot'));
+      var prevButton = slider.querySelector('[data-slide-nav="prev"]');
+      var nextButton = slider.querySelector('[data-slide-nav="next"]');
+      var desktopMedia = window.matchMedia('(min-width: 768px)');
+      var isDragging = false;
+      var dragStartX = 0;
+      var dragStartScrollLeft = 0;
 
-    if (slides.length < 2) {
-      return;
-    }
-
-    function setActiveDot(index) {
-      dots.forEach(function (dot, dotIndex) {
-        dot.classList.toggle('is-active', dotIndex === index);
-      });
-    }
-
-    function goToSlide(index, behavior) {
-      var boundedIndex = Math.max(0, Math.min(index, slides.length - 1));
-      var target = slides[boundedIndex];
-      if (!target) {
+      if (!track || !dots.length) {
         return;
       }
 
-      activeIndex = boundedIndex;
-      setActiveDot(activeIndex);
+      var slides = Array.from(track.children);
+      var slidesCount = slides.length;
 
-      slider.scrollTo({
-        left: target.offsetLeft,
-        behavior: behavior || 'smooth'
-      });
-    }
-
-    function stopAuto() {
-      if (autoTimer) {
-        window.clearInterval(autoTimer);
-        autoTimer = null;
-      }
-    }
-
-    function startAuto() {
-      stopAuto();
-      if (!mobileQuery.matches || reduceMotionQuery.matches) {
+      if (!slidesCount) {
         return;
       }
 
-      autoTimer = window.setInterval(function () {
-        var next = activeIndex + 1;
-        if (next >= slides.length) {
-          next = 0;
+      function getSlideWidth() {
+        return track.clientWidth || 1;
+      }
+
+      function getActiveIndex() {
+        var slideWidth = getSlideWidth();
+        var rawIndex = slideWidth > 0 ? Math.round(track.scrollLeft / slideWidth) : 0;
+        return Math.max(0, Math.min(rawIndex, slidesCount - 1));
+      }
+
+      function moveToIndex(index, behavior, wrapForward) {
+        var nextBehavior = behavior || 'smooth';
+        var shouldWrapForward = Boolean(wrapForward);
+        var targetIndex = index;
+
+        if (shouldWrapForward && targetIndex >= slidesCount) {
+          targetIndex = 0;
         }
-        goToSlide(next, 'smooth');
-      }, 3500);
-    }
 
-    function syncFromScroll() {
-      var width = slider.clientWidth || 1;
-      var nextIndex = Math.round(slider.scrollLeft / width);
-      if (nextIndex !== activeIndex) {
-        activeIndex = Math.max(0, Math.min(nextIndex, slides.length - 1));
-        setActiveDot(activeIndex);
+        targetIndex = Math.max(0, Math.min(targetIndex, slidesCount - 1));
+
+        track.scrollTo({
+          left: targetIndex * getSlideWidth(),
+          behavior: nextBehavior
+        });
       }
-    }
 
-    dots.forEach(function (dot) {
-      dot.addEventListener('click', function () {
-        var index = Number(dot.getAttribute('data-slide-to') || 0);
-        goToSlide(index, 'smooth');
-        startAuto();
+      function updateActiveDot() {
+        var activeIndex = getActiveIndex();
+
+        dots.forEach(function (dot, dotIndex) {
+          dot.classList.toggle('is-active', dotIndex === activeIndex);
+        });
+
+        if (prevButton) {
+          prevButton.disabled = activeIndex === 0;
+        }
+      }
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          var slideIndex = Number(dot.getAttribute('data-slide-to') || 0);
+          moveToIndex(slideIndex, 'smooth', false);
+        });
       });
+
+      if (prevButton) {
+        prevButton.addEventListener('click', function () {
+          moveToIndex(getActiveIndex() - 1, 'smooth', false);
+        });
+      }
+
+      if (nextButton) {
+        nextButton.addEventListener('click', function () {
+          moveToIndex(getActiveIndex() + 1, 'smooth', true);
+        });
+      }
+
+      Array.from(track.querySelectorAll('img')).forEach(function (image) {
+        image.draggable = false;
+      });
+
+      track.addEventListener('mousedown', function (event) {
+        if (!desktopMedia.matches || event.button !== 0) {
+          return;
+        }
+
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartScrollLeft = track.scrollLeft;
+        track.classList.add('is-dragging');
+      });
+
+      window.addEventListener('mousemove', function (event) {
+        if (!isDragging) {
+          return;
+        }
+
+        var deltaX = event.clientX - dragStartX;
+        track.scrollLeft = dragStartScrollLeft - deltaX;
+      });
+
+      window.addEventListener('mouseup', function () {
+        if (!isDragging) {
+          return;
+        }
+
+        isDragging = false;
+        track.classList.remove('is-dragging');
+        moveToIndex(getActiveIndex(), 'smooth', false);
+      });
+
+      track.addEventListener('mouseleave', function () {
+        if (!isDragging) {
+          return;
+        }
+
+        isDragging = false;
+        track.classList.remove('is-dragging');
+        moveToIndex(getActiveIndex(), 'smooth', false);
+      });
+
+      track.addEventListener('scroll', updateActiveDot, { passive: true });
+      window.addEventListener('resize', function () {
+        moveToIndex(getActiveIndex(), 'auto', false);
+        updateActiveDot();
+      });
+
+      updateActiveDot();
     });
-
-    slider.addEventListener('scroll', function () {
-      if (!mobileQuery.matches) {
-        return;
-      }
-
-      if (scrollTimer) {
-        window.clearTimeout(scrollTimer);
-      }
-
-      scrollTimer = window.setTimeout(syncFromScroll, 80);
-    });
-
-    slider.addEventListener('touchstart', stopAuto, { passive: true });
-    slider.addEventListener('touchend', startAuto);
-
-    function handleViewportChange() {
-      goToSlide(activeIndex, 'auto');
-      if (mobileQuery.matches) {
-        startAuto();
-      } else {
-        stopAuto();
-      }
-    }
-
-    if (typeof mobileQuery.addEventListener === 'function') {
-      mobileQuery.addEventListener('change', handleViewportChange);
-    } else if (typeof mobileQuery.addListener === 'function') {
-      mobileQuery.addListener(handleViewportChange);
-    }
-
-    if (typeof reduceMotionQuery.addEventListener === 'function') {
-      reduceMotionQuery.addEventListener('change', handleViewportChange);
-    } else if (typeof reduceMotionQuery.addListener === 'function') {
-      reduceMotionQuery.addListener(handleViewportChange);
-    }
-
-    window.addEventListener('resize', handleViewportChange);
-
-    goToSlide(0, 'auto');
-    startAuto();
   }
 
   function initPanelCalculator() {
@@ -882,7 +900,6 @@
     initializeApp();
   }
 })();
-
 
 
 
