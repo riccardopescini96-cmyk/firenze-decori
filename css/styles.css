@@ -135,18 +135,21 @@ main > section > .container {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  width: clamp(160px, 44vw, 245px);
-  height: 58px;
-  margin-left: -8px;
+  width: clamp(78px, 19vw, 98px);
+  height: clamp(78px, 19vw, 98px);
+  margin-left: 0;
   overflow: hidden;
+  border-radius: 50%;
 }
 
 .brand img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 50%;
   max-height: none;
+  transform: scale(1.17);
+  transform-origin: center;
 }
 
 .nav-toggle {
@@ -1393,9 +1396,17 @@ section h2::after {
 /* Installatori page specific enhancements */
 .page-installatori .hero-installatori .container {
   border: 1px solid rgba(21, 34, 53, 0.3);
+  text-align: center;
   background:
     radial-gradient(circle at 12% 20%, rgba(31, 47, 70, 0.2), transparent 48%),
     linear-gradient(126deg, rgba(255, 255, 255, 0.98), rgba(240, 234, 223, 0.96));
+}
+
+.page-installatori .hero-installatori h1,
+.page-installatori .hero-installatori .hero-subtitle,
+.page-installatori .hero-installatori .hero-value {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .page-installatori .hero-kicker {
@@ -2095,10 +2106,19 @@ textarea:focus-visible {
     justify-content: flex-start;
   }
 
+  .page-installatori .hero-installatori .hero-cta {
+    justify-content: center;
+  }
+
   .page-installatori .hero h1,
   .page-superfici .hero h1 {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .page-installatori .hero h1 {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .pathways .cards-grid,
@@ -2241,7 +2261,8 @@ textarea:focus-visible {
   }
 
   .brand {
-    width: clamp(178px, 31vw, 220px);
+    width: clamp(80px, 12vw, 94px);
+    height: clamp(80px, 12vw, 94px);
   }
 
   .nav-list {

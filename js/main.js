@@ -294,7 +294,7 @@
 
     var input = calculator.querySelector('[name="area_m2"]');
     var resultNode = calculator.querySelector('.panel-calc-result');
-    var panelAreaM2 = 1.22 * 2.44;
+    var panelAreaM2 = 1.22 * 2.8;
 
     if (!input || !resultNode) {
       return;
@@ -900,7 +900,6 @@
     initializeApp();
   }
 })();
-
 
 
 
