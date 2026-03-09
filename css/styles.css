@@ -135,21 +135,16 @@ main > section > .container {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  width: clamp(78px, 19vw, 98px);
-  height: clamp(78px, 19vw, 98px);
+  width: clamp(168px, 25vw, 248px);
+  height: auto;
   margin-left: 0;
-  overflow: hidden;
-  border-radius: 50%;
 }
 
 .brand img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 50%;
-  max-height: none;
-  transform: scale(1.17);
-  transform-origin: center;
+  height: auto;
+  object-fit: contain;
+  max-height: 70px;
 }
 
 .nav-toggle {
@@ -2261,8 +2256,8 @@ textarea:focus-visible {
   }
 
   .brand {
-    width: clamp(80px, 12vw, 94px);
-    height: clamp(80px, 12vw, 94px);
+    width: clamp(150px, 23vw, 210px);
+    height: auto;
   }
 
   .nav-list {
