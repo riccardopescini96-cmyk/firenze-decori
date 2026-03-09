@@ -134,17 +134,21 @@ main > section > .container {
 .brand {
   display: inline-flex;
   align-items: center;
+  align-self: center;
   text-decoration: none;
-  width: clamp(168px, 25vw, 248px);
-  height: auto;
+  height: clamp(36px, 9.5vw, 44px);
+  max-width: min(64vw, 200px);
+  flex: 0 1 auto;
   margin-left: 0;
 }
 
 .brand img {
-  width: 100%;
-  height: auto;
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
   object-fit: contain;
-  max-height: 70px;
+  border-radius: 8px;
 }
 
 .nav-toggle {
@@ -158,6 +162,7 @@ main > section > .container {
   border: 1px solid rgba(21, 34, 53, 0.32);
   background: rgba(255, 255, 255, 0.84);
   cursor: pointer;
+  align-self: center;
 }
 
 .nav-toggle-bar {
@@ -2094,6 +2099,8 @@ textarea:focus-visible {
   }
 
   .brand {
+    height: 48px;
+    max-width: 230px;
     margin-left: 0;
   }
 
@@ -2256,8 +2263,8 @@ textarea:focus-visible {
   }
 
   .brand {
-    width: clamp(150px, 23vw, 210px);
-    height: auto;
+    height: 44px;
+    max-width: 205px;
   }
 
   .nav-list {
