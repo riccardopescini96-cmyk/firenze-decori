@@ -3723,6 +3723,374 @@ textarea:focus-visible {
   }
 }
 
+/* B2B page polish */
+.page-installatori main > section:not(.hero-installatori) {
+  padding-top: clamp(2.45rem, 4.2vw, 3.35rem);
+  padding-bottom: clamp(2.45rem, 4.2vw, 3.35rem);
+}
+
+.page-installatori .installer-proof .container,
+.page-installatori .installer-overview .container,
+.page-installatori .installer-features .container,
+.page-installatori .installer-steps .container,
+.page-installatori .b2b-gallery .container,
+.page-installatori .installer-contact .container {
+  max-width: 960px;
+}
+
+.page-installatori .hero-installatori .container {
+  max-width: 980px;
+  padding: clamp(1.7rem, 2.9vw, 2.45rem) clamp(0.82rem, 1.55vw, 1.22rem);
+  border-radius: clamp(24px, 3vw, 32px);
+  box-shadow: 0 24px 48px rgba(18, 30, 47, 0.12);
+}
+
+.page-installatori .hero-installatori h1 {
+  max-width: min(100%, 22ch);
+  margin-bottom: 0.78rem;
+  font-size: clamp(2.2rem, 1.35rem + 2.35vw, 3.55rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+.page-installatori .hero-kicker {
+  margin-bottom: 0.9rem;
+  padding: 0.34rem 0.82rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.page-installatori .hero-installatori .hero-subtitle {
+  max-width: 50ch;
+  margin-bottom: 0.68rem;
+  font-size: clamp(1.04rem, 0.33vw + 1rem, 1.18rem);
+  line-height: 1.52;
+}
+
+.page-installatori .hero-installatori .hero-value {
+  max-width: 57ch;
+  margin-bottom: 1.12rem;
+  font-size: clamp(1rem, 0.22vw + 0.98rem, 1.11rem);
+  line-height: 1.64;
+}
+
+.page-installatori .hero-highlights {
+  width: min(100%, 700px);
+  gap: 0.7rem;
+  margin-bottom: 1.1rem;
+}
+
+.page-installatori .hero-highlights li {
+  min-height: 50px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.28;
+}
+
+.page-installatori .hero-cta {
+  width: min(100%, 610px);
+  gap: 0.74rem;
+  margin-bottom: 0.92rem;
+}
+
+.page-installatori .hero-cta .btn {
+  min-height: 54px;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.page-installatori .installer-hero-note {
+  max-width: 58ch;
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
+.page-installatori .installer-proof .container > h2,
+.page-installatori .installer-overview .container > h2,
+.page-installatori .installer-features .container > h2,
+.page-installatori .installer-steps .container > h2,
+.page-installatori .b2b-gallery .container > h2,
+.page-installatori .installer-contact .container > h2 {
+  width: min(100%, 860px);
+  max-width: none;
+  padding-inline: clamp(0rem, 0.7vw, 0.24rem);
+  margin: 0 auto 1.15rem;
+  font-size: clamp(1.8rem, 1rem + 1.35vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.page-installatori .installer-proof .container > h2::after,
+.page-installatori .installer-overview .container > h2::after,
+.page-installatori .installer-features .container > h2::after,
+.page-installatori .installer-steps .container > h2::after,
+.page-installatori .b2b-gallery .container > h2::after,
+.page-installatori .installer-contact .container > h2::after {
+  content: "";
+  display: block;
+  width: 68px;
+  height: 3px;
+  margin: 0.7rem auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(21, 34, 53, 0.82), rgba(200, 164, 107, 0.78));
+}
+
+.page-installatori .proof-grid,
+.page-installatori .installer-overview-grid,
+.page-installatori .installer-features .cards-grid,
+.page-installatori .installer-steps .step-list {
+  gap: clamp(0.95rem, 1.5vw, 1.15rem);
+}
+
+.page-installatori .proof-item,
+.page-installatori .overview-panel,
+.page-installatori .installer-features .card,
+.page-installatori .step-card {
+  border-radius: 20px;
+  padding: clamp(1.08rem, 1.55vw, 1.3rem);
+}
+
+.page-installatori .proof-item h3,
+.page-installatori .overview-panel h3,
+.page-installatori .installer-features .card h3,
+.page-installatori .step-card h3 {
+  min-height: auto;
+  margin-bottom: 0.52rem;
+  font-size: clamp(1.08rem, 0.54vw + 0.98rem, 1.28rem);
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.page-installatori .proof-item p,
+.page-installatori .overview-panel ul,
+.page-installatori .installer-features .card p,
+.page-installatori .step-card p {
+  font-size: 0.97rem;
+  line-height: 1.62;
+}
+
+.page-installatori .overview-panel ul {
+  gap: 0.48rem;
+  padding-left: 1.15rem;
+}
+
+.page-installatori .installer-overview .container,
+.page-installatori .installer-contact .container {
+  padding: clamp(1.25rem, 2.25vw, 1.95rem);
+  border-radius: clamp(22px, 2.6vw, 28px);
+  box-shadow: 0 18px 36px rgba(18, 30, 47, 0.08);
+}
+
+.page-installatori .installer-overview-cta {
+  margin-top: 1.08rem;
+  padding: 0.78rem 0.94rem;
+  font-size: 0.95rem;
+  line-height: 1.58;
+}
+
+.page-installatori .installer-contact-intro {
+  max-width: 56ch;
+  margin: 0 auto 0.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.page-installatori .installer-contact-note {
+  max-width: 56ch;
+  margin: 0 auto 1.05rem;
+  padding: 0.7rem 0.88rem;
+  line-height: 1.58;
+  font-size: 0.95rem;
+}
+
+.page-installatori .installer-contact form {
+  max-width: 760px;
+  gap: 1rem;
+}
+
+.page-installatori .installer-contact textarea {
+  min-height: 180px;
+}
+
+.page-installatori .b2b-gallery .gallery-grid {
+  gap: 0.9rem;
+}
+
+.page-installatori .b2b-gallery .gallery-grid figure {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(16, 30, 47, 0.12);
+}
+
+.page-installatori .b2b-gallery .gallery-grid img {
+  transition: transform 0.28s ease;
+}
+
+.page-installatori .b2b-gallery .gallery-grid figure:hover img {
+  transform: scale(1.03);
+}
+
+@media (min-width: 1024px) {
+  .page-installatori .proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-installatori .hero-installatori h1 {
+    max-width: min(100%, 21ch);
+    font-size: clamp(2.28rem, 1.7rem + 1.6vw, 2.95rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .page-installatori .hero-installatori .container {
+    padding: clamp(1.16rem, 4.4vw, 1.58rem) clamp(0.58rem, 2.7vw, 0.76rem);
+    border-radius: 22px;
+  }
+
+  .page-installatori .hero-installatori h1 {
+    max-width: min(100%, 19ch);
+    font-size: clamp(2rem, 7vw, 2.5rem);
+  }
+
+  .page-installatori .hero-highlights li {
+    min-height: 44px;
+    font-size: 0.87rem;
+  }
+
+  .page-installatori .installer-contact textarea {
+    min-height: 164px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-installatori main > section:not(.hero-installatori) {
+    padding-top: 1.9rem;
+    padding-bottom: 1.9rem;
+  }
+
+  .page-installatori .installer-proof {
+    padding-top: 1rem;
+  }
+
+  .page-installatori .installer-proof .container,
+  .page-installatori .installer-overview .container,
+  .page-installatori .installer-features .container,
+  .page-installatori .installer-steps .container,
+  .page-installatori .b2b-gallery .container,
+  .page-installatori .installer-contact .container {
+    max-width: 100%;
+  }
+
+  .page-installatori .installer-proof .container > h2,
+  .page-installatori .installer-overview .container > h2,
+  .page-installatori .installer-features .container > h2,
+  .page-installatori .installer-steps .container > h2,
+  .page-installatori .b2b-gallery .container > h2,
+  .page-installatori .installer-contact .container > h2 {
+    width: 100%;
+    max-width: none;
+    padding-inline: 0;
+    margin-bottom: 0.9rem;
+    font-size: clamp(1.78rem, 6.2vw, 2.18rem);
+    line-height: 1.08;
+  }
+
+  .page-installatori .proof-grid,
+  .page-installatori .installer-overview-grid,
+  .page-installatori .installer-features .cards-grid,
+  .page-installatori .installer-steps .step-list,
+  .page-installatori .b2b-gallery .gallery-grid {
+    gap: 0.8rem;
+  }
+
+  .page-installatori .proof-item,
+  .page-installatori .overview-panel,
+  .page-installatori .installer-features .card,
+  .page-installatori .step-card {
+    padding: 0.98rem;
+    border-radius: 18px;
+  }
+
+  .page-installatori .proof-item h3,
+  .page-installatori .overview-panel h3,
+  .page-installatori .installer-features .card h3,
+  .page-installatori .step-card h3 {
+    margin-bottom: 0.46rem;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .page-installatori .proof-item p,
+  .page-installatori .overview-panel ul,
+  .page-installatori .installer-features .card p,
+  .page-installatori .step-card p,
+  .page-installatori .installer-contact-intro,
+  .page-installatori .installer-contact-note,
+  .page-installatori .installer-hero-note {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .page-installatori .installer-contact .container {
+    padding: 1rem 0.84rem 1.08rem;
+  }
+
+  .page-installatori .installer-contact form {
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-installatori main > section:not(.hero-installatori) {
+    padding-top: 2.2rem;
+    padding-bottom: 2.2rem;
+  }
+
+  .page-installatori .installer-proof .container,
+  .page-installatori .installer-overview .container,
+  .page-installatori .installer-features .container,
+  .page-installatori .installer-steps .container,
+  .page-installatori .b2b-gallery .container,
+  .page-installatori .installer-contact .container,
+  .page-installatori .hero-installatori .container {
+    max-width: 900px;
+  }
+
+  .page-installatori .installer-proof .container > h2,
+  .page-installatori .installer-overview .container > h2,
+  .page-installatori .installer-features .container > h2,
+  .page-installatori .installer-steps .container > h2,
+  .page-installatori .b2b-gallery .container > h2,
+  .page-installatori .installer-contact .container > h2 {
+    width: min(100%, 760px);
+  }
+
+  .page-installatori .proof-grid,
+  .page-installatori .installer-features .cards-grid,
+  .page-installatori .installer-overview-grid {
+    gap: 0.95rem;
+  }
+
+  .page-installatori .installer-steps .step-list {
+    gap: 0.9rem;
+  }
+
+  .page-installatori .installer-proof .container > h2,
+  .page-installatori .installer-overview .container > h2,
+  .page-installatori .installer-features .container > h2,
+  .page-installatori .installer-steps .container > h2,
+  .page-installatori .b2b-gallery .container > h2,
+  .page-installatori .installer-contact .container > h2 {
+    font-size: clamp(1.9rem, 1.25rem + 1.1vw, 2.45rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -3744,11 +4112,6 @@ textarea:focus-visible {
     transform: translateY(0);
   }
 }
-
-
-
-
-
 
 
 
