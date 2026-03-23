@@ -2758,6 +2758,19 @@ textarea:focus-visible {
     margin-left: 0;
   }
 
+  .page-home .hero-slider .gallery-grid[data-mobile-slideshow] figure {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .page-home .hero-slider .gallery-grid img {
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+  }
+
   .hero-cta {
     justify-content: flex-start;
   }
@@ -3731,7 +3744,6 @@ textarea:focus-visible {
     transform: translateY(0);
   }
 }
-
 
 
 
