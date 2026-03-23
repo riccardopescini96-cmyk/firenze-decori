@@ -155,6 +155,7 @@
 
     sliders.forEach(function (slider) {
       var track = slider.querySelector('[data-mobile-slideshow]');
+      var dotsContainer = slider.querySelector('.gallery-slider-controls');
       var dots = Array.from(slider.querySelectorAll('.gallery-dot'));
       var prevButton = slider.querySelector('[data-slide-nav="prev"]');
       var nextButton = slider.querySelector('[data-slide-nav="next"]');
@@ -163,7 +164,7 @@
       var dragStartX = 0;
       var dragStartScrollLeft = 0;
 
-      if (!track || !dots.length) {
+      if (!track) {
         return;
       }
 
@@ -172,6 +173,21 @@
 
       if (!slidesCount) {
         return;
+      }
+
+      if (dotsContainer && dots.length !== slidesCount) {
+        dotsContainer.innerHTML = '';
+
+        slides.forEach(function (_, slideIndex) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = slideIndex === 0 ? 'gallery-dot is-active' : 'gallery-dot';
+          dot.setAttribute('data-slide-to', String(slideIndex));
+          dot.setAttribute('aria-label', 'Vai alla slide ' + String(slideIndex + 1));
+          dotsContainer.appendChild(dot);
+        });
+
+        dots = Array.from(dotsContainer.querySelectorAll('.gallery-dot'));
       }
 
       function getSlideWidth() {
@@ -900,6 +916,5 @@
     initializeApp();
   }
 })();
-
 
 
