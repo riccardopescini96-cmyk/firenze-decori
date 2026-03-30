@@ -116,6 +116,18 @@ main > section > .container {
   margin: 0 auto;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -666,6 +678,9 @@ section h2::after {
 .page-home .hero-slider .gallery-grid[data-mobile-slideshow] figure {
   flex: 0 0 100%;
   aspect-ratio: 5 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   scroll-snap-align: start;
   padding: clamp(0.45rem, 1vw, 0.72rem);
   border: 1px solid rgba(21, 34, 53, 0.12);
@@ -686,7 +701,8 @@ section h2::after {
 .page-home .hero-slider .gallery-grid img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   border-radius: calc(var(--radius-m) - 8px);
 }
 
@@ -695,12 +711,12 @@ section h2::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.38rem;
+  gap: 0.5rem;
 }
 
 .page-home .hero-slider .gallery-dot {
-  width: 7px;
-  height: 7px;
+  width: 16px;
+  height: 16px;
   border: 0;
   border-radius: 50%;
   padding: 0;
@@ -709,7 +725,7 @@ section h2::after {
 }
 
 .page-home .hero-slider .gallery-dot.is-active {
-  width: 22px;
+  width: 24px;
   border-radius: 999px;
   background: var(--brand-strong);
 }
@@ -1656,8 +1672,8 @@ section h2::after {
 }
 
 .home-gallery .gallery-dot {
-  width: 9px;
-  height: 9px;
+  width: 16px;
+  height: 16px;
   border: 0;
   border-radius: 50%;
   padding: 0;
@@ -1666,7 +1682,7 @@ section h2::after {
 }
 
 .home-gallery .gallery-dot.is-active {
-  width: 26px;
+  width: 24px;
   border-radius: 999px;
   background: var(--brand-strong);
 }
@@ -3586,11 +3602,12 @@ textarea:focus-visible {
   }
 
   .page-home .hero-slider .gallery-grid[data-mobile-slideshow] figure {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 5 / 4;
+    padding: 0.42rem;
   }
 
   .page-home .hero-slider .gallery-slider-controls {
-    margin-top: 0.5rem;
+    display: none;
   }
 
   .page-home .hero-value-pills {
@@ -4112,7 +4129,3 @@ textarea:focus-visible {
     transform: translateY(0);
   }
 }
-
-
-
-
