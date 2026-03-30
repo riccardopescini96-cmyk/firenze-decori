@@ -1631,6 +1631,10 @@ section h2::after {
   object-fit: cover;
 }
 
+.gallery-item-desktop {
+  display: none;
+}
+
 .gallery-set-marmo {
   display: grid;
   place-items: center;
@@ -2971,6 +2975,10 @@ textarea:focus-visible {
 
   .gallery-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery-item-desktop {
+    display: block;
   }
 
   .home-gallery .gallery-grid {
