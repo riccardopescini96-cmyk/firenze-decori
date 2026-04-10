@@ -4447,6 +4447,10 @@ textarea:focus-visible {
   max-width: 920px;
 }
 
+.page-faq .faq-shell .section-intro {
+  margin-bottom: clamp(0.8rem, 1.8vw, 1rem);
+}
+
 .page-faq .faq-tabs {
   display: flex;
   gap: 0.5rem;
