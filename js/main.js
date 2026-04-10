@@ -881,8 +881,11 @@
     var pageKey = getCurrentPageKey();
     var defaultPhone = '+393384519991';
     var stickyState = {
-      frame: 0
+      frame: 0,
+      visibilityFrame: 0,
+      isVisible: false
     };
+    var stickyRevealOffset = 36;
     var stickyConfigMap = {
       'index.html': {
         enabled: true,
@@ -1105,7 +1108,7 @@
           return;
         }
 
-        document.documentElement.style.setProperty('--mobile-cta-sticky-height', String(stickyNode.offsetHeight || 0) + 'px');
+        document.documentElement.style.setProperty('--mobile-cta-sticky-height', String(stickyState.isVisible ? (stickyNode.offsetHeight || 0) : 0) + 'px');
 
         if (!window.visualViewport) {
           document.documentElement.style.setProperty('--mobile-cta-viewport-shift', '0px');
@@ -1120,12 +1123,47 @@
       });
     }
 
+    function shouldShowSticky() {
+      return (window.scrollY || window.pageYOffset || 0) > stickyRevealOffset;
+    }
+
+    function syncStickyVisibility() {
+      var isVisible;
+
+      if (!stickyNode) {
+        return;
+      }
+
+      isVisible = shouldShowSticky();
+
+      if (stickyState.isVisible === isVisible) {
+        return;
+      }
+
+      stickyState.isVisible = isVisible;
+      stickyNode.classList.toggle('is-visible', isVisible);
+      document.body.classList.toggle('has-mobile-cta-sticky-visible', isVisible);
+      queueStickyMetricsUpdate();
+    }
+
+    function queueStickyVisibilityUpdate() {
+      if (stickyState.visibilityFrame) {
+        return;
+      }
+
+      stickyState.visibilityFrame = window.requestAnimationFrame(function () {
+        stickyState.visibilityFrame = 0;
+        syncStickyVisibility();
+      });
+    }
+
     if (!getStickyConfig().enabled) {
       if (stickyNode) {
         stickyNode.remove();
       }
 
       document.body.classList.remove('has-mobile-cta-sticky');
+      document.body.classList.remove('has-mobile-cta-sticky-visible');
       document.documentElement.style.setProperty('--mobile-cta-sticky-height', '0px');
       document.documentElement.style.setProperty('--mobile-cta-viewport-shift', '0px');
       return;
@@ -1147,6 +1185,7 @@
       resizeObserver.observe(stickyNode);
     }
 
+    window.addEventListener('scroll', queueStickyVisibilityUpdate, { passive: true });
     window.addEventListener('resize', queueStickyMetricsUpdate);
     window.addEventListener('orientationchange', queueStickyMetricsUpdate);
 
@@ -1155,6 +1194,7 @@
       window.visualViewport.addEventListener('scroll', queueStickyMetricsUpdate);
     }
 
+    syncStickyVisibility();
     queueStickyMetricsUpdate();
   }
 

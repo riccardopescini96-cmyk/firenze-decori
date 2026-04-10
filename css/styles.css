@@ -6069,6 +6069,80 @@ textarea:focus-visible {
   stroke-linejoin: round;
 }
 
+.page-installatori-v2 .hero-installatori .container.hero-cta-showcase-b2b {
+  display: grid;
+  justify-items: center;
+  align-items: stretch;
+  gap: 0.95rem;
+  max-width: 860px;
+  padding: clamp(1.2rem, 2.7vw, 1.7rem);
+  text-align: center;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-heading-block {
+  display: grid;
+  gap: 0.72rem;
+  max-width: min(100%, 62ch);
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b h1 {
+  max-width: min(100%, 18.5ch);
+  margin: 0 auto;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-subtitle {
+  max-width: 54ch;
+  margin: 0 auto;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-cta {
+  width: 100%;
+  margin: 0;
+  justify-content: center;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-pills {
+  width: min(100%, 620px);
+  margin-top: 0.05rem;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-pills li:last-child {
+  width: min(100%, 270px);
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-primary {
+  width: min(100%, 560px);
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-secondary {
+  width: min(100%, 320px);
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-secondary .btn {
+  min-height: 50px;
+  font-weight: 700;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-trust {
+  width: min(100%, 660px);
+  gap: 0.48rem 1rem;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta li {
+  text-wrap: balance;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta a:hover,
+.page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .contact-form-card {
   max-width: 820px;
   margin: 0 auto;
@@ -6195,6 +6269,9 @@ textarea:focus-visible {
 
 .mobile-cta-sticky {
   display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (min-width: 640px) {
@@ -6205,11 +6282,11 @@ textarea:focus-visible {
 }
 
 @media (max-width: 767px) {
-  body.has-mobile-cta-sticky {
+  body.has-mobile-cta-sticky-visible {
     padding-bottom: calc(var(--mobile-cta-sticky-height, 0px) + 0.4rem);
   }
 
-  .has-mobile-cta-sticky .wa-float {
+  .has-mobile-cta-sticky-visible .wa-float {
     display: none;
   }
 
@@ -6254,6 +6331,27 @@ textarea:focus-visible {
     font-size: 0.84rem;
   }
 
+  .page-installatori-v2 .hero-installatori .container.hero-cta-showcase-b2b {
+    gap: 0.8rem;
+  }
+
+  .page-installatori-v2 .hero-cta-showcase-b2b .hero-heading-block {
+    gap: 0.62rem;
+  }
+
+  .page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-pills li:last-child {
+    width: min(100%, 230px);
+  }
+
+  .page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-secondary {
+    width: 100%;
+  }
+
+  .page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-trust {
+    width: 100%;
+    gap: 0.42rem 0.8rem;
+  }
+
   .contact-form-card {
     padding: 1rem 0.9rem;
     border-radius: 20px;
@@ -6278,6 +6376,13 @@ textarea:focus-visible {
     box-shadow: 0 -8px 22px rgba(12, 21, 35, 0.12);
     transform: translate3d(0, var(--mobile-cta-viewport-shift, 0px), 0);
     will-change: transform;
+    transition: opacity 180ms ease, visibility 180ms ease;
+  }
+
+  .mobile-cta-sticky.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .mobile-cta-sticky-label {
