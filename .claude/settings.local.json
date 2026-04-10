@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls /c/Users/imric/OneDrive/Desktop/firenze-decori/*.html)"
+      "Bash(ls /c/Users/imric/OneDrive/Desktop/firenze-decori/*.html)",
+      "Bash(node -e ':*)"
     ]
   }
 }

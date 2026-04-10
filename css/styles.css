@@ -1702,6 +1702,11 @@ section h2::after {
     linear-gradient(112deg, #fff, #f3ecdf);
 }
 
+.catalog-cta .container > h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .page-home .catalog-cta .container {
   position: relative;
   overflow: hidden;
@@ -2576,10 +2581,21 @@ textarea {
   color: var(--error);
 }
 
-.page-thankyou .thank-you {
-  min-height: calc(100vh - 280px);
-  display: grid;
+.page-thankyou {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-thankyou main {
+  flex: 1;
+  display: flex;
   align-items: center;
+}
+
+.page-thankyou .thank-you {
+  width: 100%;
+  padding: var(--space-section) 0;
 }
 
 .thank-you-card {
@@ -3107,6 +3123,50 @@ textarea:focus-visible {
     font-size: 1.9rem;
     line-height: 1;
     transform: translateY(-1px);
+  }
+
+  /* ── Ripristino hamburger su tablet (768–1023px) ── */
+  /* Il nav a 6 voci non entra in questa fascia: si usa il menu mobile */
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-wrapper {
+    position: fixed;
+    top: 74px;
+    right: 1rem;
+    left: 1rem;
+    padding: 0.8rem;
+    border: 1px solid rgba(21, 34, 53, 0.2);
+    border-radius: var(--radius-m);
+    background: linear-gradient(170deg, rgba(255, 255, 255, 0.97), rgba(246, 241, 232, 0.97));
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  }
+
+  body.nav-open .nav-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
+
+  .nav-list {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 0.8rem 0.95rem;
+    font-size: 1.02rem;
+    white-space: normal;
   }
 }
 
@@ -4553,6 +4613,11 @@ textarea:focus-visible {
   text-align: center;
 }
 
+.page-faq .faq-cta .container > h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .page-faq .faq-cta h2,
 .page-faq .faq-cta p {
   margin-left: auto;
@@ -5198,6 +5263,53 @@ textarea:focus-visible {
   .page-come-funziona .installer-features .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* ─── Policy pages (cookie-policy, privacy-policy) ── */
+
+.page-policy main > section {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+.page-policy .system-overview .container {
+  max-width: 780px;
+}
+
+.page-policy .system-overview h1 {
+  margin-bottom: 1.05rem;
+  font-size: clamp(2rem, 1.35vw + 1.2rem, 2.8rem);
+  line-height: 1.1;
+}
+
+.page-policy .section-intro {
+  margin-bottom: 1.5rem;
+  color: var(--text-soft);
+  font-size: clamp(1.04rem, 0.22vw + 0.98rem, 1.13rem);
+  line-height: 1.65;
+  max-width: 60ch;
+}
+
+.page-policy .system-overview p {
+  margin-bottom: 0.9rem;
+  max-width: 68ch;
+  line-height: 1.72;
+  color: var(--text);
+}
+
+.page-policy .system-overview p:last-child {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+.page-policy .system-overview strong {
+  color: var(--brand-strong);
+  font-weight: 700;
+}
+
+.page-policy .system-overview a {
+  font-weight: 600;
 }
 
 /* ─── B2B v2 ───────────────────────────────────────── */
