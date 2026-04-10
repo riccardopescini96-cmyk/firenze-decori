@@ -703,6 +703,9 @@
     attachFormspree('#form-b2b', 'https://formspree.io/f/xeelddyr', 'b2b', {
       messagePlaceholder: 'Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e schede tecniche.'
     });
+    attachFormspree('#form-b2b-v2', 'https://formspree.io/f/xeelddyr', 'b2b', {
+      messagePlaceholder: 'Indica attività, finiture o codici di interesse, metratura e tempistica.'
+    });
   }
 
   function initFaqTabs() {
@@ -856,6 +859,7 @@
     var pageMap = {
       'index.html': 'Home',
       'fornitura-professionisti.html': 'Fornitura professionisti',
+      'fornitura-professionisti-v2.html': 'Fornitura professionisti',
       'rivestimenti-interni.html': 'Rivestimenti interni',
       'faq.html': 'FAQ',
       'come-funziona.html': 'Come funziona',

@@ -4649,6 +4649,13 @@ textarea:focus-visible {
   box-shadow: var(--shadow-soft);
 }
 
+.ig-reel-wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 .page-come-funziona main > section:not(.hero) {
   padding-top: clamp(2.45rem, 4.2vw, 3.35rem);
   padding-bottom: clamp(2.45rem, 4.2vw, 3.35rem);
@@ -5054,6 +5061,21 @@ textarea:focus-visible {
   transform: translateX(4px);
 }
 
+.page-come-funziona .cf-section-kicker {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 0.55rem;
+  padding: 0.28rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 53, 0.2);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--brand-strong);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .page-come-funziona .come-funziona-contacts form {
   margin-left: auto;
   margin-right: auto;
@@ -5177,3 +5199,450 @@ textarea:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ─── B2B v2 ───────────────────────────────────────── */
+
+.page-installatori-v2 .hero-installatori .container {
+  align-items: center;
+  text-align: center;
+}
+
+/* Section kickers outside hero */
+.page-installatori-v2 .installer-proof .hero-kicker,
+.page-installatori-v2 .installer-overview .hero-kicker,
+.page-installatori-v2 .installer-steps .hero-kicker,
+.page-installatori-v2 .installer-features .hero-kicker {
+  display: inline-flex;
+  margin-bottom: 0.55rem;
+}
+
+/* Section intro spacing */
+.page-installatori-v2 .installer-proof .installer-contact-intro {
+  margin: 0 auto 1.3rem;
+  text-align: center;
+}
+
+.page-installatori-v2 .installer-overview .section-intro,
+.page-installatori-v2 .installer-steps .section-intro {
+  margin-bottom: 1.3rem;
+}
+
+.page-installatori-v2 .installer-features .section-intro {
+  margin-bottom: 0.9rem;
+}
+
+/* Hero CTA centering */
+.page-installatori-v2 .hero-installatori .hero-cta {
+  justify-content: center;
+  width: min(100%, 560px);
+  margin: 0 auto 0.8rem;
+}
+
+/* Links in B2B strips — inherit brand color, no underline */
+.b2b-phone-note a,
+.b2b-contact-info-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.b2b-phone-note a:hover,
+.b2b-contact-info-item a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Contact intro in split contact layout */
+.b2b-contact-left .installer-contact-intro {
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.page-installatori-v2 .hero-installatori h1 {
+  max-width: min(100%, 20ch);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-installatori-v2 .installer-proof .container > h2::after,
+.page-installatori-v2 .installer-proof .container > .hero-kicker ~ h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-installatori-v2 .installer-proof .container > h2 {
+  text-align: center;
+}
+
+/* WHO STRIP */
+.b2b-who-strip {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.52rem;
+  margin: 0 auto 1rem;
+  padding: 0;
+  width: min(100%, 660px);
+}
+
+.b2b-who-strip li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  padding: 0.44rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(21, 34, 53, 0.2);
+  background: linear-gradient(145deg, rgba(255,255,255,0.93), rgba(244,238,227,0.86));
+  color: var(--brand-strong);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.b2b-who-strip li::before {
+  content: "";
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-strong), var(--accent));
+  flex-shrink: 0;
+}
+
+/* CERT STRIP */
+.b2b-cert-strip {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.42rem;
+  margin: 0 auto 1.05rem;
+  padding: 0;
+}
+
+.b2b-cert-strip li {
+  padding: 0.28rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(200, 164, 107, 0.45);
+  background: rgba(200, 164, 107, 0.1);
+  color: #5a3e10;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* PHONE NOTE */
+.b2b-phone-note {
+  margin: 0 auto;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.b2b-phone-note strong {
+  color: var(--brand-strong);
+  font-weight: 700;
+}
+
+/* PROFILE GRID */
+.b2b-profile-grid {
+  display: grid;
+  gap: clamp(0.75rem, 1.3vw, 0.95rem);
+  align-items: stretch;
+}
+
+.b2b-profile-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 1.5vw, 1.2rem);
+  border-radius: var(--radius-m);
+  border: 1px solid rgba(21, 34, 53, 0.16);
+  background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(244,238,227,0.9));
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.b2b-profile-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 32px rgba(16, 30, 47, 0.12);
+}
+
+.b2b-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(21, 34, 53, 0.1);
+}
+
+.b2b-profile-avatar {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-strong), var(--brand));
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(21, 34, 53, 0.22);
+  user-select: none;
+}
+
+.b2b-profile-meta h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(0.97rem, 0.5vw + 0.88rem, 1.05rem);
+  font-weight: 800;
+  color: var(--brand-strong);
+  margin: 0 0 0.15rem;
+  line-height: 1.2;
+}
+
+.b2b-profile-meta p {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.b2b-profile-needs {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  line-height: 1.58;
+  margin: 0;
+  flex: 1;
+}
+
+.b2b-profile-needs strong {
+  color: var(--brand-strong);
+  font-weight: 700;
+}
+
+/* SPEC STRIP */
+.b2b-spec-strip {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.b2b-spec-strip li {
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 53, 0.18);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--brand-strong);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* DELIVERABLE GRID */
+.b2b-deliverable-grid {
+  display: grid;
+  gap: clamp(0.7rem, 1.2vw, 0.9rem);
+  align-items: stretch;
+}
+
+.b2b-deliverable-item {
+  height: 100%;
+  padding: clamp(0.95rem, 1.4vw, 1.15rem);
+  border-radius: var(--radius-m);
+  border: 1px solid rgba(21, 34, 53, 0.15);
+  background: linear-gradient(150deg, rgba(255,255,255,0.97), rgba(245,239,228,0.88));
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s ease;
+}
+
+.b2b-deliverable-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+}
+
+.b2b-deliverable-item:hover {
+  transform: translateY(-3px);
+}
+
+.b2b-deliverable-item h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 0.5vw + 0.86rem, 1.04rem);
+  font-weight: 800;
+  color: var(--brand-strong);
+  margin: 0 0 0.42rem;
+  line-height: 1.2;
+}
+
+.b2b-deliverable-item p {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* GALLERY CONTEXT */
+.b2b-gallery-context {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-m);
+  border: 1px solid rgba(200, 164, 107, 0.32);
+  background: rgba(200, 164, 107, 0.08);
+  margin-bottom: 1rem;
+}
+
+.b2b-gallery-context p {
+  font-size: 0.92rem;
+  color: var(--brand-strong);
+  font-weight: 700;
+  margin: 0 0 0.22rem;
+}
+
+.b2b-gallery-context span {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* CONTACT SPLIT */
+.b2b-contact-split {
+  display: grid;
+  gap: clamp(1.4rem, 2.5vw, 2.2rem);
+  align-items: start;
+}
+
+.b2b-contact-left,
+.b2b-contact-form {
+  min-width: 0;
+}
+
+.b2b-contact-left h2,
+.b2b-contact-split + h2 {
+  text-align: left;
+}
+
+.b2b-contact-info {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.b2b-contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+  padding: 0.68rem 0.9rem;
+  border-radius: var(--radius-s);
+  border: 1px solid rgba(21, 34, 53, 0.16);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.88rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.72rem;
+}
+
+.b2b-contact-info-item strong {
+  color: var(--brand-strong);
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 72px;
+}
+
+.b2b-contact-info-item span {
+  color: var(--text-soft);
+}
+
+.b2b-ci-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  flex-shrink: 0;
+}
+
+.page-installatori-v2 .installer-contact .b2b-contact-form form {
+  max-width: none;
+  margin-top: 0;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .b2b-profile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .b2b-deliverable-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .b2b-contact-split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page-installatori-v2 .proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-installatori-v2 .b2b-gallery .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-installatori-v2 .installer-contact .b2b-contact-split + .installer-contact-note {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .b2b-profile-grid,
+  .b2b-deliverable-grid {
+    gap: 0.75rem;
+  }
+
+  .b2b-contact-split {
+    grid-template-columns: 1fr;
+  }
+
+  .b2b-contact-info-item strong {
+    min-width: auto;
+  }
+
+  .page-installatori-v2 .hero-installatori h1 {
+    max-width: 17ch;
+  }
+
+  .page-installatori-v2 .hero-installatori .hero-cta {
+    grid-template-columns: 1fr;
+    width: 100% !important;
+  }
+
+  .page-installatori-v2 .hero-installatori .hero-cta .btn,
+  .page-installatori-v2 .installer-contact .contact-form .btn {
+    width: 100%;
+  }
+
+  .b2b-who-strip li {
+    font-size: 0.84rem;
+    padding: 0.38rem 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-installatori-v2 .proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-installatori-v2 .b2b-gallery .gallery-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ─── fine B2B v2 ───────────────────────────────────── */
