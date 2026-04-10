@@ -705,6 +705,77 @@
     });
   }
 
+  function initFaqTabs() {
+    var tabs = document.querySelectorAll('.faq-tab');
+    var items = document.querySelectorAll('.faq-item[data-audience][data-topic]');
+    var groups = document.querySelectorAll('[data-faq-group]');
+
+    if (!tabs.length || !items.length) {
+      return;
+    }
+
+    function setActiveTab(activeTab) {
+      tabs.forEach(function (tab) {
+        var isActive = tab === activeTab;
+        tab.classList.toggle('is-active', isActive);
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+    }
+
+    function isVisible(item, filterKind, filterValue) {
+      if (filterKind === 'all' || filterValue === 'all') {
+        return true;
+      }
+
+      var audience = (item.getAttribute('data-audience') || '').toLowerCase();
+      var topic = (item.getAttribute('data-topic') || '').toLowerCase();
+
+      if (filterKind === 'audience') {
+        return audience === filterValue || audience === 'tutti';
+      }
+
+      if (filterKind === 'topic') {
+        return topic === filterValue;
+      }
+
+      return true;
+    }
+
+    function updateGroups() {
+      groups.forEach(function (group) {
+        var visibleItems = group.querySelectorAll('.faq-item:not(.faq-hidden)');
+        group.classList.toggle('faq-hidden', !visibleItems.length);
+      });
+    }
+
+    function applyFilter(tab) {
+      var filterKind = tab.getAttribute('data-filter-kind') || 'all';
+      var filterValue = (tab.getAttribute('data-filter-value') || 'all').toLowerCase();
+
+      items.forEach(function (item) {
+        item.classList.toggle('faq-hidden', !isVisible(item, filterKind, filterValue));
+      });
+
+      updateGroups();
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        setActiveTab(tab);
+        applyFilter(tab);
+      });
+    });
+
+    var defaultTab = document.querySelector('.faq-tab.is-active, .faq-tab.active') || tabs[0];
+    if (!defaultTab) {
+      return;
+    }
+
+    setActiveTab(defaultTab);
+    applyFilter(defaultTab);
+  }
+
   function getThankYouAudienceLabel(audience) {
     var normalized = (audience || '').toLowerCase();
 
@@ -786,6 +857,7 @@
       'index.html': 'Home',
       'fornitura-professionisti.html': 'Fornitura professionisti',
       'rivestimenti-interni.html': 'Rivestimenti interni',
+      'faq.html': 'FAQ',
       'form-inviato.html': 'Form inviato'
     };
     var pageKey = getCurrentPageKey();
@@ -909,6 +981,7 @@
     initFooterLinks();
     initTrackedClicks();
     initHomeGallerySlideshow();
+    initFaqTabs();
     initPanelCalculator();
     initContactForms();
     initThankYouPage();
