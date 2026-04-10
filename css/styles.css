@@ -5811,6 +5811,17 @@ textarea:focus-visible {
   width: min(100%, 640px);
 }
 
+.page-rivestimenti .hero-intro-frame,
+.page-installatori-v2 .hero-intro-frame {
+  width: min(100%, 640px);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
 .page-home .hero-slider {
   width: min(100%, 640px);
   margin: 0.95rem auto 0;
@@ -5847,12 +5858,18 @@ textarea:focus-visible {
 }
 
 .hero-cta-showcase .hero-heading-block {
-  max-width: 100%;
-  margin: 0;
+  max-width: min(100%, 620px);
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-cta-showcase .hero-heading-block > p {
-  margin: 0;
+  max-width: 39ch;
+  margin: 0 auto;
+  color: var(--home-title-ink);
+  font-size: clamp(0.98rem, 0.24vw + 0.9rem, 1.08rem);
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .hero-cta-showcase .hero-cta-pills {
@@ -6069,30 +6086,51 @@ textarea:focus-visible {
   stroke-linejoin: round;
 }
 
-.page-installatori-v2 .hero-installatori .container.hero-cta-showcase-b2b {
+.page-rivestimenti .hero-superfici .container,
+.page-installatori-v2 .hero-installatori .container {
+  display: block;
+  text-align: center;
+  padding: clamp(1rem, 2vw, 1.45rem);
+  border: 1px solid rgba(200, 164, 107, 0.36);
+  border-radius: var(--radius-l);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(31, 47, 70, 0.15), transparent 48%),
+    radial-gradient(circle at 94% 0%, rgba(200, 164, 107, 0.2), transparent 35%),
+    linear-gradient(130deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 229, 0.95));
+  box-shadow: var(--shadow-strong);
+}
+
+.page-rivestimenti .hero-cta-showcase h1,
+.page-installatori-v2 .hero-cta-showcase h1 {
+  max-width: 22.8ch;
+  margin: 0 auto 0.52rem;
+  color: var(--home-title-ink);
+  font-size: var(--section-heading-size);
+  line-height: 1.12;
+  letter-spacing: 0.02em;
+  text-wrap: pretty;
+}
+
+.page-installatori-v2 .hero-cta-showcase-b2b {
   display: grid;
   justify-items: center;
   align-items: stretch;
   gap: 0.95rem;
-  max-width: 860px;
-  padding: clamp(1.2rem, 2.7vw, 1.7rem);
-  text-align: center;
+  width: 100%;
+  padding: clamp(1rem, 2.6vw, 1.35rem);
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .hero-heading-block {
-  display: grid;
-  gap: 0.72rem;
-  max-width: min(100%, 62ch);
-}
-
-.page-installatori-v2 .hero-cta-showcase-b2b h1 {
-  max-width: min(100%, 18.5ch);
-  margin: 0 auto;
+  display: block;
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .hero-subtitle {
-  max-width: 54ch;
+  max-width: 39ch;
   margin: 0 auto;
+  color: var(--home-title-ink);
+  font-size: clamp(0.98rem, 0.24vw + 0.9rem, 1.08rem);
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .hero-cta {
@@ -6331,7 +6369,17 @@ textarea:focus-visible {
     font-size: 0.84rem;
   }
 
-  .page-installatori-v2 .hero-installatori .container.hero-cta-showcase-b2b {
+  .page-rivestimenti .hero-superfici .container,
+  .page-installatori-v2 .hero-installatori .container {
+    padding: clamp(0.95rem, 4vw, 1.2rem);
+  }
+
+  .page-rivestimenti .hero-cta-showcase h1,
+  .page-installatori-v2 .hero-cta-showcase h1 {
+    max-width: min(100%, 15.5ch);
+  }
+
+  .page-installatori-v2 .hero-cta-showcase-b2b {
     gap: 0.8rem;
   }
 
