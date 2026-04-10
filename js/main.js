@@ -700,9 +700,6 @@
 
   function initContactForms() {
     attachFormspree('#form-generico', 'https://formspree.io/f/mvzbyyjn', 'generico');
-    attachFormspree('#form-b2c', 'https://formspree.io/f/xgolqqgr', 'b2c', {
-      messagePlaceholder: 'Indicaci in breve il tuo progetto (ambiente, metratura, finitura).'
-    });
     attachFormspree('#form-b2b', 'https://formspree.io/f/xeelddyr', 'b2b', {
       messagePlaceholder: 'Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e schede tecniche.'
     });
