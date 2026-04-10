@@ -147,15 +147,20 @@
         <h2 id="video-title">Guarda il video di presentazione</h2>
         <p>Un Reel diretto dallo showroom: in pochi secondi vedi il materiale, le finiture e l'effetto finale su parete reale.</p>
         <div class="ig-reel-wrapper">
-          <iframe
-            src="https://www.instagram.com/reel/DWY7KeTjZfq/embed/"
-            allowfullscreen
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
-            loading="lazy"
-            title="Video pannelli PVC effetto marmo &mdash; Firenze Decori">
-          </iframe>
+          <video
+            class="ig-reel-player"
+            controls
+            playsinline
+            preload="none"
+            poster="assets/img/og-home-preview.jpg"
+            controlslist="nodownload noplaybackrate"
+            data-smart-preload
+            aria-describedby="video-presentation-note">
+            <source src="assets/video/come-funziona-reel.mp4" type="video/mp4">
+            Il tuo browser non supporta il video HTML5. Puoi guardarlo su Instagram.
+          </video>
         </div>
-        <p class="video-presentation-note">Se il video non si carica, guardalo direttamente su Instagram: <a href="https://www.instagram.com/firenzedecori/" target="_blank" rel="noopener noreferrer">@firenzedecori</a></p>
+        <p class="video-presentation-note" id="video-presentation-note">Video locale ottimizzato per il sito. Se preferisci, guarda anche il profilo Instagram: <a href="https://www.instagram.com/firenzedecori/" target="_blank" rel="noopener noreferrer">@firenzedecori</a></p>
         <div class="video-presentation-actions">
           <a class="btn btn-consult-blue" href="https://wa.me/393384519991?text=Ciao%20Firenze%20Decori%2C%20ho%20visto%20il%20video%20e%20vorrei%20un%20preventivo%20per%20rivestire%20una%20parete." target="_blank" rel="noopener noreferrer" data-track="whatsapp_video_come_funziona">Scrivici su WhatsApp</a>
         </div>

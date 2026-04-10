@@ -837,6 +837,45 @@
     }
   }
 
+  function initSmartMediaPreload() {
+    var mediaNodes = document.querySelectorAll('video[data-smart-preload]');
+    if (!mediaNodes.length) {
+      return;
+    }
+
+    function warmupMedia(node) {
+      if (!node || node.dataset.preloadReady === 'true') {
+        return;
+      }
+
+      node.dataset.preloadReady = 'true';
+      node.preload = 'metadata';
+      node.load();
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      mediaNodes.forEach(warmupMedia);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        warmupMedia(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: '240px 0px'
+    });
+
+    mediaNodes.forEach(function (node) {
+      observer.observe(node);
+    });
+  }
+
   function getCurrentPageKey() {
     var pathname = window.location.pathname || '';
     var cleanPath = pathname.split('?')[0].split('#')[0];
@@ -990,6 +1029,7 @@
     initPanelCalculator();
     initContactForms();
     initThankYouPage();
+    initSmartMediaPreload();
   }
 
   if (document.readyState === 'loading') {

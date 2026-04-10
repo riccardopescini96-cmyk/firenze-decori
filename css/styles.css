@@ -4721,6 +4721,15 @@ textarea:focus-visible {
   border: none;
 }
 
+.ig-reel-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #0c1421;
+  object-fit: cover;
+}
+
 .page-come-funziona main > section:not(.hero) {
   padding-top: clamp(2.45rem, 4.2vw, 3.35rem);
   padding-bottom: clamp(2.45rem, 4.2vw, 3.35rem);
