@@ -4637,3 +4637,543 @@ textarea:focus-visible {
     width: 100%;
   }
 }
+
+/* come funziona page */
+.ig-reel-wrapper {
+  width: min(100%, 400px);
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  border: 1px solid rgba(21,34,53,0.15);
+  box-shadow: var(--shadow-soft);
+}
+
+.page-come-funziona main > section:not(.hero) {
+  padding-top: clamp(2.45rem, 4.2vw, 3.35rem);
+  padding-bottom: clamp(2.45rem, 4.2vw, 3.35rem);
+}
+
+.page-come-funziona .hero .container,
+.page-come-funziona .video-presentation .container,
+.page-come-funziona .installer-steps .container,
+.page-come-funziona .installer-features .container,
+.page-come-funziona .come-funziona-pathways .container,
+.page-come-funziona .come-funziona-contacts .container {
+  max-width: 960px;
+}
+
+.page-come-funziona .hero .container {
+  max-width: 980px;
+  padding: clamp(1.7rem, 2.9vw, 2.45rem) clamp(0.82rem, 1.55vw, 1.22rem);
+  border-radius: clamp(24px, 3vw, 32px);
+  box-shadow: 0 24px 48px rgba(18, 30, 47, 0.12);
+  text-align: center;
+}
+
+.page-come-funziona .hero h1,
+.page-come-funziona .hero-subtitle,
+.page-come-funziona .hero-value {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-come-funziona .hero h1 {
+  max-width: min(100%, 21ch);
+  margin-bottom: 0.78rem;
+  font-size: clamp(2.2rem, 1.35rem + 2.35vw, 3.55rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+.page-come-funziona .hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.9rem;
+  padding: 0.34rem 0.82rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 53, 0.24);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--brand-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.page-come-funziona .hero-kicker::before {
+  content: "";
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--brand), var(--accent));
+}
+
+.page-come-funziona .hero-subtitle {
+  max-width: 50ch;
+  margin-bottom: 0.68rem;
+  color: #2d4055;
+  font-size: clamp(1.04rem, 0.33vw + 1rem, 1.18rem);
+  font-weight: 600;
+  line-height: 1.52;
+  text-wrap: pretty;
+}
+
+.page-come-funziona .hero-value {
+  max-width: 57ch;
+  margin-bottom: 1.12rem;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 0.22vw + 0.98rem, 1.11rem);
+  line-height: 1.64;
+  text-wrap: pretty;
+}
+
+.page-come-funziona .hero-highlights {
+  list-style: none;
+  margin: 0 auto 1.1rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, 680px);
+  gap: 0.7rem;
+}
+
+.page-come-funziona .hero-highlights li {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 53, 0.23);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(247, 241, 231, 0.86));
+  box-shadow: 0 6px 14px rgba(16, 30, 47, 0.08);
+  color: #2e4056;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.page-come-funziona .hero-highlights li::before {
+  content: none;
+}
+
+.page-come-funziona .hero-cta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  justify-content: center;
+  width: min(100%, 620px);
+  margin: 0 auto;
+  gap: 0.74rem;
+}
+
+.page-come-funziona .hero-cta .btn {
+  width: 100%;
+  min-height: 54px;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+}
+
+.page-come-funziona .video-presentation {
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(248,243,234,0.52));
+}
+
+.page-come-funziona .video-presentation .container {
+  max-width: 760px;
+  text-align: center;
+}
+
+.page-come-funziona .video-presentation h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-come-funziona .video-presentation > .container > p {
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-soft);
+  margin-bottom: 1.5rem;
+}
+
+.page-come-funziona .video-presentation-note {
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.page-come-funziona .video-presentation-note a {
+  font-weight: 700;
+}
+
+.page-come-funziona .video-presentation-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.page-come-funziona .video-presentation-actions .btn {
+  min-height: 44px;
+  font-size: 0.96rem;
+}
+
+.page-come-funziona .installer-steps .container,
+.page-come-funziona .installer-features .container,
+.page-come-funziona .come-funziona-contacts .container {
+  padding: clamp(1.25rem, 2.25vw, 1.95rem);
+  border-radius: clamp(22px, 2.6vw, 28px);
+  border: 1px solid rgba(21, 34, 53, 0.16);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(200, 164, 107, 0.14), transparent 36%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.95), rgba(247, 241, 231, 0.88));
+  box-shadow: 0 18px 36px rgba(18, 30, 47, 0.08);
+}
+
+.page-come-funziona .installer-steps .container > h2,
+.page-come-funziona .installer-features .container > h2,
+.page-come-funziona .come-funziona-pathways .container > h2,
+.page-come-funziona .come-funziona-contacts .container > h2 {
+  width: min(100%, 860px);
+  max-width: none;
+  padding-inline: clamp(0rem, 0.7vw, 0.24rem);
+  margin: 0 auto 1.15rem;
+  font-size: clamp(1.8rem, 1rem + 1.35vw, 2.7rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.page-come-funziona .installer-steps .container > h2::after,
+.page-come-funziona .installer-features .container > h2::after,
+.page-come-funziona .come-funziona-pathways .container > h2::after,
+.page-come-funziona .come-funziona-contacts .container > h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-come-funziona .come-funziona-pathways .section-intro,
+.page-come-funziona .come-funziona-contacts .container > p:first-of-type {
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.page-come-funziona .installer-steps .step-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.95rem, 1.5vw, 1.15rem);
+}
+
+.page-come-funziona .installer-features .cards-grid {
+  gap: clamp(0.95rem, 1.5vw, 1.15rem);
+}
+
+.page-come-funziona .step-card,
+.page-come-funziona .installer-features .card {
+  border-radius: 20px;
+  padding: clamp(1.08rem, 1.55vw, 1.3rem);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 228, 0.9));
+  border: 1px solid rgba(21, 34, 53, 0.15);
+  box-shadow: 0 14px 26px rgba(16, 30, 47, 0.1);
+}
+
+.page-come-funziona .step-card::before,
+.page-come-funziona .installer-features .card::before {
+  content: "";
+  display: block;
+  width: 52px;
+  height: 3px;
+  margin-bottom: 0.82rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-strong), var(--accent));
+}
+
+.page-come-funziona .step-card h3,
+.page-come-funziona .installer-features .card h3 {
+  min-height: auto;
+  margin-bottom: 0.52rem;
+  font-size: clamp(1.08rem, 0.54vw + 0.98rem, 1.28rem);
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.page-come-funziona .step-card p,
+.page-come-funziona .installer-features .card p {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.62;
+  color: var(--text-soft);
+}
+
+.page-come-funziona .come-funziona-pathways .cards-grid {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-come-funziona .pathway-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.15rem, 2vw, 1.5rem);
+  background:
+    radial-gradient(circle at top right, rgba(200, 164, 107, 0.18), transparent 32%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.97), rgba(244, 238, 228, 0.9));
+}
+
+.page-come-funziona .pathway-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand-strong), var(--accent));
+}
+
+.page-come-funziona .home-card-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+  margin: 0 0 0.52rem;
+  padding: 0.2rem 0.52rem 0.22rem;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 53, 0.2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(244, 238, 228, 0.82));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 3px 7px rgba(16, 30, 47, 0.07);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brand-strong);
+}
+
+.page-come-funziona .home-card-kicker::before {
+  content: "";
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--brand), var(--accent));
+  box-shadow: 0 0 0 2px rgba(200, 164, 107, 0.16);
+}
+
+.page-come-funziona .pathway-question {
+  display: inline-block;
+  margin-bottom: 0.62rem;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.22rem, 0.64vw + 1rem, 1.56rem);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: 0;
+  color: var(--brand-strong);
+  white-space: normal;
+}
+
+.page-come-funziona .pathway-lead {
+  margin-bottom: 1rem;
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.page-come-funziona .pathway-link {
+  width: fit-content;
+  margin-top: auto;
+  min-height: 44px;
+  padding: 0.56rem 0.92rem;
+  border-radius: 12px;
+  border: 1px solid rgba(21, 34, 53, 0.2);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(243, 236, 224, 0.9));
+  box-shadow: 0 7px 14px rgba(16, 30, 47, 0.09);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.page-come-funziona .pathway-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--brand-strong);
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.page-come-funziona .pathway-link-label::after {
+  content: "\2192";
+  font-size: 0.9em;
+  transition: transform 0.2s ease;
+}
+
+.page-come-funziona .pathway-card-b2b .pathway-link {
+  border-color: rgba(31, 47, 70, 0.36);
+  background: linear-gradient(140deg, rgba(238, 242, 247, 0.98), rgba(227, 234, 242, 0.94));
+  box-shadow: 0 10px 20px rgba(24, 40, 61, 0.13);
+}
+
+.page-come-funziona .pathway-card-b2b .pathway-link-label {
+  color: #1f2f46;
+}
+
+.page-come-funziona .pathway-card-b2c .pathway-link {
+  border-color: rgba(123, 98, 66, 0.36);
+  background: linear-gradient(140deg, rgba(248, 244, 236, 0.98), rgba(238, 230, 216, 0.95));
+  box-shadow: 0 10px 20px rgba(83, 63, 39, 0.12);
+}
+
+.page-come-funziona .pathway-card-b2c .pathway-link-label {
+  color: #3f3426;
+}
+
+.page-come-funziona .pathway-link:hover,
+.page-come-funziona .pathway-link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(16, 30, 47, 0.14);
+  text-decoration: none;
+}
+
+.page-come-funziona .pathway-link:hover .pathway-link-label::after,
+.page-come-funziona .pathway-link:focus-visible .pathway-link-label::after {
+  transform: translateX(4px);
+}
+
+.page-come-funziona .come-funziona-contacts form {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 740px;
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .page-come-funziona main > section:not(.hero) {
+    padding-top: 1.9rem;
+    padding-bottom: 1.9rem;
+  }
+
+  .page-come-funziona .hero .container {
+    padding: clamp(1.16rem, 4.4vw, 1.58rem) clamp(0.58rem, 2.7vw, 0.76rem);
+    border-radius: 22px;
+  }
+
+  .page-come-funziona .hero h1 {
+    max-width: min(100%, 18ch);
+    font-size: clamp(2rem, 7vw, 2.5rem);
+  }
+
+  .page-come-funziona .hero-highlights {
+    width: 100%;
+    gap: 0.56rem;
+  }
+
+  .page-come-funziona .hero-highlights li {
+    min-height: 44px;
+    font-size: 0.87rem;
+  }
+
+  .page-come-funziona .hero-cta {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .page-come-funziona .video-presentation-actions {
+    align-items: stretch;
+  }
+
+  .page-come-funziona .video-presentation-actions .btn {
+    width: 100%;
+  }
+
+  .page-come-funziona .installer-steps .container,
+  .page-come-funziona .installer-features .container,
+  .page-come-funziona .come-funziona-contacts .container {
+    padding: 1rem 0.84rem 1.08rem;
+  }
+
+  .page-come-funziona .installer-steps .container > h2,
+  .page-come-funziona .installer-features .container > h2,
+  .page-come-funziona .come-funziona-pathways .container > h2,
+  .page-come-funziona .come-funziona-contacts .container > h2 {
+    width: 100%;
+    max-width: none;
+    padding-inline: 0;
+    margin-bottom: 0.9rem;
+    font-size: clamp(1.78rem, 6.2vw, 2.18rem);
+    line-height: 1.08;
+  }
+
+  .page-come-funziona .installer-steps .step-list,
+  .page-come-funziona .installer-features .cards-grid,
+  .page-come-funziona .come-funziona-pathways .cards-grid {
+    gap: 0.8rem;
+  }
+
+  .page-come-funziona .step-card,
+  .page-come-funziona .installer-features .card,
+  .page-come-funziona .pathway-card {
+    padding: 0.98rem;
+    border-radius: 18px;
+  }
+
+  .page-come-funziona .step-card h3,
+  .page-come-funziona .installer-features .card h3,
+  .page-come-funziona .pathway-question {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .page-come-funziona .step-card p,
+  .page-come-funziona .installer-features .card p,
+  .page-come-funziona .pathway-lead,
+  .page-come-funziona .hero-subtitle,
+  .page-come-funziona .hero-value {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-come-funziona .hero-highlights {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(100%, 760px);
+  }
+
+  .page-come-funziona .installer-steps .step-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-come-funziona .installer-features .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-come-funziona .hero-highlights {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(100%, 760px);
+  }
+
+  .page-come-funziona .installer-steps .step-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-come-funziona .installer-features .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
