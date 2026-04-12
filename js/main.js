@@ -888,7 +888,8 @@
   function initMobileStickyCta() {
     var stickyNode = document.querySelector('.mobile-cta-sticky');
     var pageKey = getCurrentPageKey();
-    var defaultPhone = '+393384519991';
+    var defaultWhatsappPhone = '+393534194564';
+    var defaultCallPhone = '+393283416871';
     var stickyState = {
       frame: 0,
       visibilityFrame: 0,
@@ -959,15 +960,15 @@
       var waNode = document.querySelector('a[href*="wa.me/"][href]');
 
       if (waNode) {
-        return waNode.getAttribute('href') || ('https://wa.me/' + defaultPhone.replace('+', ''));
+        return waNode.getAttribute('href') || ('https://wa.me/' + defaultWhatsappPhone.replace('+', ''));
       }
 
-      return 'https://wa.me/' + defaultPhone.replace('+', '');
+      return 'https://wa.me/' + defaultWhatsappPhone.replace('+', '');
     }
 
     function getCallHref() {
       var phoneNode = document.querySelector('a[href^="tel:"]');
-      return phoneNode ? (phoneNode.getAttribute('href') || ('tel:' + defaultPhone)) : ('tel:' + defaultPhone);
+      return phoneNode ? (phoneNode.getAttribute('href') || ('tel:' + defaultCallPhone)) : ('tel:' + defaultCallPhone);
     }
 
     function getContactConfig() {
