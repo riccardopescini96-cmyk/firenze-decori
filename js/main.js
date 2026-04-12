@@ -1140,6 +1140,7 @@
     }
 
     function isNearVideoOrForm() {
+      var videoSection = document.querySelector('.video-presentation');
       var video = document.querySelector('.ig-reel-player, .ig-reel-wrapper');
       var forms = document.querySelectorAll('.contact-form-card, .unified-form');
 
@@ -1151,7 +1152,7 @@
         return visibleHeight > windowHeight * 0.3;
       }
 
-      if (isElementInViewport(video)) return true;
+      if (isElementInViewport(videoSection) || isElementInViewport(video)) return true;
 
       var formInView = false;
       forms.forEach(function (form) {
