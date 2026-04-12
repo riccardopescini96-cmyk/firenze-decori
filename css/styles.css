@@ -4722,9 +4722,9 @@ textarea:focus-visible {
 
 /* come funziona page */
 .ig-reel-wrapper {
-  width: min(100%, 400px);
-  margin: 0 auto;
+  width: min(100%, 340px);
   aspect-ratio: 9 / 16;
+  margin: 0 auto;
   border-radius: var(--radius-m);
   overflow: hidden;
   border: 1px solid rgba(21,34,53,0.15);
@@ -6857,4 +6857,171 @@ textarea:focus-visible {
   border: 0;
   background: transparent;
   box-shadow: none;
+}
+
+/* ─── come-funziona: trust bar ──────────────────────── */
+
+.cf-trust-bar {
+  list-style: none;
+  margin: 1.1rem auto 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 1.1rem;
+  width: min(100%, 580px);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.cf-trust-bar li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cf-trust-bar svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ─── come-funziona: visual steps ───────────────────── */
+
+.cf-steps-visual {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cf-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(21, 34, 53, 0.1);
+  position: relative;
+}
+
+.cf-step:last-child {
+  border-bottom: none;
+}
+
+.cf-step-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--brand);
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cf-step-body h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.5vw + 0.94rem, 1.12rem);
+  font-weight: 800;
+  color: var(--brand-strong);
+  margin: 0 0 0.28rem;
+  line-height: 1.2;
+}
+
+.cf-step-body p {
+  margin: 0;
+  font-size: 0.94rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+@media (min-width: 768px) {
+  .cf-step {
+    padding: 1.2rem 0;
+    gap: 1.4rem;
+  }
+
+  .cf-step-num {
+    width: 44px;
+    height: 44px;
+    font-size: 0.82rem;
+  }
+
+  .ig-reel-wrapper {
+    width: min(100%, 360px);
+  }
+
+  .cf-trust-bar {
+    gap: 0.5rem 1.6rem;
+  }
+}
+
+/* ─── index: system-overview compact ────────────────── */
+
+.system-overview-compact .container {
+  max-width: 760px;
+}
+
+.system-overview-compact .section-intro {
+  margin-bottom: 1.1rem;
+  max-width: 62ch;
+}
+
+.system-overview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.82rem 1.15rem;
+  border-radius: var(--radius-m);
+  border: 1px solid rgba(200, 164, 107, 0.38);
+  background: rgba(200, 164, 107, 0.1);
+  color: var(--brand-strong);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.system-overview-link:hover {
+  background: rgba(200, 164, 107, 0.2);
+  border-color: rgba(200, 164, 107, 0.55);
+  color: var(--brand-strong);
+}
+
+.system-overview-link svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.system-overview-link:hover svg {
+  transform: translateX(4px);
+}
+
+@media (min-width: 768px) {
+  .system-overview-compact .section-intro {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .system-overview-compact .container {
+    text-align: center;
+  }
+
+  .system-overview-link {
+    margin: 0 auto;
+  }
 }
