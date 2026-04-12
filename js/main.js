@@ -927,9 +927,9 @@
       'fornitura-professionisti.html': {
         enabled: true,
         label: 'Richiedi catalogo o preventivo B2B',
-        secondaryKind: 'form',
-        secondaryLabel: 'Vai al form B2B',
-        note: 'Risposta entro 24 ore · preventivo + catalogo in un messaggio'
+        secondaryKind: 'call',
+        secondaryLabel: 'Chiama',
+        note: ''
       },
       'contatti.html': {
         enabled: true,
@@ -976,8 +976,8 @@
 
       if (pageKey === 'fornitura-professionisti.html') {
         return {
-          href: localContactsNode ? '#contatti' : 'fornitura-professionisti.html#contatti',
-          label: 'Oppure vai al form B2B'
+          href: '#contatti',
+          label: 'Oppure compila il form B2B'
         };
       }
 
