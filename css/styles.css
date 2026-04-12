@@ -159,6 +159,10 @@ main > section > .container {
   line-height: 0;
 }
 
+.brand picture {
+  display: contents;
+}
+
 .brand img {
   display: block;
   width: auto;
