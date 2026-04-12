@@ -1264,6 +1264,7 @@
       'rivestimenti-interni.html': 'Rivestimenti interni',
       'faq.html': 'FAQ',
       'come-funziona.html': 'Come funziona',
+      'contatti.html': 'Contatti',
       'form-inviato.html': 'Form inviato'
     };
     var pageKey = getCurrentPageKey();
