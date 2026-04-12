@@ -4169,7 +4169,7 @@ textarea:focus-visible {
 
 @keyframes rise-in {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(12px);
   }
   to {
