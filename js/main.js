@@ -1139,8 +1139,32 @@
       });
     }
 
+    function isNearVideoOrForm() {
+      var video = document.querySelector('.ig-reel-player, .ig-reel-wrapper');
+      var forms = document.querySelectorAll('.contact-form-card, .unified-form');
+
+      function isElementInViewport(el) {
+        if (!el) return false;
+        var rect = el.getBoundingClientRect();
+        var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        var visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+        return visibleHeight > windowHeight * 0.3;
+      }
+
+      if (isElementInViewport(video)) return true;
+
+      var formInView = false;
+      forms.forEach(function (form) {
+        if (isElementInViewport(form)) formInView = true;
+      });
+
+      return formInView;
+    }
+
     function shouldShowSticky() {
-      return (window.scrollY || window.pageYOffset || 0) > stickyRevealOffset;
+      var hasScrolled = (window.scrollY || window.pageYOffset || 0) > stickyRevealOffset;
+      if (!hasScrolled) return false;
+      return !isNearVideoOrForm();
     }
 
     function syncStickyVisibility() {

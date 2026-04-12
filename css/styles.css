@@ -4727,11 +4727,19 @@ textarea:focus-visible {
 .ig-reel-wrapper {
   width: min(100%, 340px);
   aspect-ratio: 9 / 16;
+  max-height: calc(100svh - 120px);
   margin: 0 auto;
   border-radius: var(--radius-m);
   overflow: hidden;
   border: 1px solid rgba(21,34,53,0.15);
   box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 767px) {
+  .ig-reel-wrapper {
+    width: min(100%, 300px);
+    max-height: calc(100svh - 100px);
+  }
 }
 
 .ig-reel-wrapper iframe {
@@ -4882,6 +4890,7 @@ textarea:focus-visible {
 
 .page-come-funziona .video-presentation {
   background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(248,243,234,0.52));
+  padding-top: clamp(3rem, 6vw, 4.5rem);
 }
 
 .page-come-funziona .video-presentation .container {
@@ -6992,10 +7001,6 @@ textarea:focus-visible {
     width: 44px;
     height: 44px;
     font-size: 0.82rem;
-  }
-
-  .ig-reel-wrapper {
-    width: min(100%, 360px);
   }
 
   .cf-trust-bar {
