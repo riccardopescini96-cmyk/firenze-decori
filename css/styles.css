@@ -7047,17 +7047,19 @@ textarea:focus-visible {
 }
 
 .hero-cta-showcase-b2b .b2b-hero-pills {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: min(100%, 480px);
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  width: min(100%, 420px);
   margin: 0 auto 0.9rem;
   padding: 0;
   list-style: none;
-  display: grid;
   gap: 0.52rem;
 }
 
 .hero-cta-showcase-b2b .b2b-hero-pills li {
   min-height: 44px;
+  width: 100% !important;
+  grid-column: auto !important;
   padding: 0.42rem 0.82rem;
   border-radius: 999px;
   border: 1px solid rgba(21, 34, 53, 0.2);
@@ -7071,7 +7073,5 @@ textarea:focus-visible {
   align-items: center;
   justify-content: center;
   text-align: center;
-  text-wrap: balance;
-  line-height: 1.24;
   box-shadow: 0 6px 14px rgba(16,30,47,0.07);
 }
