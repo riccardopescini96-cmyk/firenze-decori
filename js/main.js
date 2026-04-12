@@ -922,6 +922,13 @@
         secondaryLabel: 'Vai al form B2B',
         note: 'Risposta entro 24 ore · preventivo + catalogo in un messaggio'
       },
+      'contatti.html': {
+        enabled: true,
+        label: 'Vuoi informazioni o un preventivo?',
+        secondaryKind: 'call',
+        secondaryLabel: 'Chiama',
+        note: ''
+      },
       'form-inviato.html': {
         enabled: false
       },
@@ -940,7 +947,7 @@
     }
 
     function getWhatsappHref() {
-      var waNode = document.querySelector('.wa-float[href], a[href*="wa.me/"][href]');
+      var waNode = document.querySelector('a[href*="wa.me/"][href]');
 
       if (waNode) {
         return waNode.getAttribute('href') || ('https://wa.me/' + defaultPhone.replace('+', ''));
@@ -956,7 +963,7 @@
 
     function getContactConfig() {
       var localContactsNode = document.getElementById('contatti');
-      var localHref = localContactsNode ? '#contatti' : 'index.html#contatti';
+      var localHref = localContactsNode ? '#contatti' : 'contatti.html#contatti';
 
       if (pageKey === 'fornitura-professionisti.html') {
         return {
@@ -967,21 +974,21 @@
 
       if (pageKey === 'rivestimenti-interni.html') {
         return {
-          href: 'index.html#contatti',
+          href: 'contatti.html#contatti',
           label: 'Oppure invia la richiesta dal modulo'
         };
       }
 
       if (pageKey === 'form-inviato.html') {
         return {
-          href: 'index.html#contatti',
+          href: 'contatti.html#contatti',
           label: 'Oppure invia una nuova richiesta'
         };
       }
 
       if (pageKey === 'privacy-policy.html' || pageKey === 'cookie-policy.html') {
         return {
-          href: 'index.html#contatti',
+          href: 'contatti.html#contatti',
           label: 'Oppure vai ai contatti'
         };
       }
