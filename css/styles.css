@@ -6813,3 +6813,103 @@ textarea:focus-visible {
     display: none;
   }
 }
+
+/* unified form */
+.unified-form {
+  gap: 0.82rem;
+}
+
+.unified-mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(21,34,53,0.2);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.unified-mode-btn {
+  padding: 0.62rem 0.75rem;
+  font-size: 0.93rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  background: rgba(255,255,255,0.82);
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.unified-mode-btn + .unified-mode-btn {
+  border-left: 1px solid rgba(21,34,53,0.15);
+}
+
+.unified-mode-btn.is-active {
+  background: var(--brand);
+  color: #fff;
+}
+
+.unified-form textarea {
+  min-height: 96px;
+}
+
+.field-optional {
+  font-weight: 400;
+  color: var(--text-soft);
+  font-size: 0.85em;
+}
+
+.unified-form .contact-form-alt-actions {
+  grid-template-columns: 1fr;
+}
+
+.unified-form .contact-form-alt-actions .btn {
+  width: 100%;
+}
+
+.unified-form .btn-cta-alt {
+  min-height: 50px;
+  border-radius: 14px;
+}
+
+.unified-form .btn-cta-alt span {
+  line-height: 1.25;
+  text-align: center;
+}
+
+.form-trust-strip {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1rem;
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.form-trust-strip li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.form-trust-strip li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.page-installatori .unified-form[data-default-mode="professionista"] .unified-mode-btn[data-mode="professionista"].is-active {
+  background: var(--brand);
+  color: #fff;
+}
+
+.page-installatori .unified-form[data-default-mode="professionista"] .unified-mode-btn[data-mode="privato"]:not(.is-active) {
+  background: rgba(255,255,255,0.82);
+  color: var(--text-soft);
+}

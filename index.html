@@ -326,98 +326,6 @@
       </div>
     </section>
 
-    <section class="contacts" id="contatti" aria-labelledby="contacts-title">
-      <div class="container">
-        <div class="contact-form-card contact-form-card-home">
-          <div class="contact-form-card-head">
-            <span class="contact-form-tag">Preventivo & informazioni</span>
-            <h2 id="contacts-title">Scrivi la tua richiesta</h2>
-            <p>Ti rispondiamo entro 24 ore con informazioni tecniche o commerciali. Se hai urgenza, usa uno dei contatti rapidi qui sotto.</p>
-          </div>
-
-          <form id="form-generico" class="contact-form" action="https://formspree.io/f/mvzbyyjn" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="home">
-            <input type="hidden" name="form_origin" value="home">
-            <input type="hidden" name="page_url" value="">
-            <input type="hidden" name="submitted_at" value="">
-            <input type="hidden" name="form_target" value="">
-            <input type="hidden" name="_subject" value="">
-            <input type="hidden" name="email_preview" value="">
-
-            <div class="contact-form-row">
-              <div class="form-field">
-                <label for="home_first_name">Nome</label>
-                <input type="text" id="home_first_name" name="first_name" autocomplete="given-name" required>
-              </div>
-
-              <div class="form-field">
-                <label for="home_last_name">Cognome</label>
-                <input type="text" id="home_last_name" name="last_name" autocomplete="family-name">
-              </div>
-            </div>
-
-            <div class="form-field">
-              <label for="home_email">Email</label>
-              <input type="email" id="home_email" name="email" autocomplete="email" required>
-            </div>
-
-            <div class="form-field">
-              <label for="home_user_type">Tipologia richiesta</label>
-              <select id="home_user_type" name="request_type" data-user-type required>
-                <option value="">Seleziona</option>
-                <option value="privato">Privato</option>
-                <option value="installatore">Installatore</option>
-                <option value="rivenditore">Rivenditore</option>
-              </select>
-            </div>
-
-            <div class="form-field form-field-conditional is-hidden" data-company-field hidden>
-              <label for="home_company_name">Azienda (solo B2B)</label>
-              <input type="text" id="home_company_name" name="company_name" autocomplete="organization">
-            </div>
-
-            <div class="form-field">
-              <label for="home_message">Messaggio</label>
-              <textarea id="home_message" name="message" rows="5" placeholder="Indicaci in breve il tuo progetto: ambiente, metratura, finitura e tempistiche.">Richiedo informazioni.
-</textarea>
-            </div>
-
-            <div class="form-field checkbox-field">
-              <input type="checkbox" id="home_privacy" name="privacy" required>
-              <label for="home_privacy">Ho letto e accetto la <a href="privacy-policy.html" rel="nofollow">Privacy Policy</a> (obbligatorio)</label>
-            </div>
-
-            <div class="form-field checkbox-field">
-              <input type="checkbox" id="home_marketing" name="marketing">
-              <label for="home_marketing">Acconsento a ricevere comunicazioni marketing (facoltativo)</label>
-            </div>
-
-            <button type="submit" class="btn btn-primary" data-track="lead_form">Invia richiesta</button>
-            <div class="form-status" role="status" aria-live="polite"></div>
-            <p class="contact-form-note">Risposta entro 24 ore · Nessun impegno</p>
-
-            <div class="contact-form-alt">
-              <p class="contact-form-alt-label">Preferisci una risposta più rapida?</p>
-              <div class="contact-form-alt-actions">
-                <a class="btn btn-cta-whatsapp btn-cta-alt" href="https://wa.me/393384519991?text=Ciao%20Firenze%20Decori%2C%20vorrei%20informazioni%20sui%20pannelli%20PVC%20per%20rivestimenti%20interni." target="_blank" rel="noopener noreferrer" data-track="whatsapp_form_home">
-                  <svg class="btn-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path>
-                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.413A9.956 9.956 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"></path>
-                  </svg>
-                  <span>WhatsApp diretto</span>
-                </a>
-                <a class="btn btn-cta-call-light btn-cta-alt" href="tel:+393384519991" data-track="call_form_home">
-                  <svg class="btn-cta-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                    <path d="M3 2.5C3 2.5 4 5 5.5 6.5c1.5 1.5 4 2.5 4 2.5l2-2 3 3c-1 2-3.5 3-6 1.5C6 10 4 8 2.5 5.5 1 3 2 1 3 2.5z"></path>
-                  </svg>
-                  <span>+39 338 451 9991</span>
-                </a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
     <section class="system-overview" aria-labelledby="system-title">
       <div class="container">
         <h2 id="system-title">Come funziona il sistema Firenze Decori</h2>
@@ -476,6 +384,82 @@
             </div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="contacts" id="contatti" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contact-form-card">
+          <div class="contact-form-card-head">
+            <span class="contact-form-tag">Richiesta rapida</span>
+            <h2 id="contacts-title">Scrivi la tua richiesta</h2>
+            <p>Ti rispondiamo entro 24 ore. Zero impegno.</p>
+          </div>
+
+          <form id="form-generico" class="contact-form unified-form" action="https://formspree.io/f/mvzbyyjn" method="POST" data-formspree-form data-thank-you="form-inviato.html" data-form-context="home">
+            <input type="hidden" name="form_origin" value="home">
+            <input type="hidden" name="page_url" value="">
+            <input type="hidden" name="submitted_at" value="">
+            <input type="hidden" name="form_target" value="">
+            <input type="hidden" name="_subject" value="">
+            <input type="hidden" name="email_preview" value="">
+
+            <div class="unified-mode-toggle" role="group" aria-label="Tipo di richiesta">
+              <button type="button" class="unified-mode-btn is-active" data-mode="privato" aria-pressed="true">Privato</button>
+              <button type="button" class="unified-mode-btn" data-mode="professionista" aria-pressed="false">Professionista</button>
+              <input type="hidden" name="request_type" value="privato">
+            </div>
+
+            <div class="contact-form-row">
+              <div class="form-field">
+                <label for="u_first_name">Nome</label>
+                <input type="text" id="u_first_name" name="first_name" autocomplete="given-name" required>
+              </div>
+              <div class="form-field">
+                <label for="u_email">Email</label>
+                <input type="email" id="u_email" name="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="form-field is-hidden" data-company-field hidden>
+              <label for="u_company">Azienda</label>
+              <input type="text" id="u_company" name="company_name" autocomplete="organization">
+            </div>
+
+            <div class="form-field">
+              <label for="u_message">Messaggio <span class="field-optional">(opzionale)</span></label>
+              <textarea id="u_message" name="message" rows="3" placeholder="Ambiente, metratura, finitura o domanda...">Richiedo informazioni.</textarea>
+            </div>
+
+            <div class="form-field checkbox-field">
+              <input type="checkbox" id="u_privacy" name="privacy" required>
+              <label for="u_privacy">Ho letto e accetto la <a href="privacy-policy.html" rel="nofollow">Privacy Policy</a> (obbligatorio)</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" data-track="lead_form">Invia richiesta &rarr;</button>
+            <div class="form-status" role="status" aria-live="polite"></div>
+            <p class="contact-form-note">Risposta entro 24 ore &#183; Nessun impegno</p>
+
+            <div class="contact-form-alt">
+              <p class="contact-form-alt-label">Oppure scrivici subito su WhatsApp</p>
+              <div class="contact-form-alt-actions">
+                <a class="btn btn-cta-whatsapp btn-cta-alt" href="https://wa.me/393384519991?text=Ciao%20Firenze%20Decori%2C%20vorrei%20informazioni%20sui%20pannelli%20PVC." target="_blank" rel="noopener noreferrer" data-track="whatsapp_form">
+                  <svg class="btn-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path>
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.413A9.956 9.956 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"></path>
+                  </svg>
+                  <span>WhatsApp &ndash; rispondiamo in pochi minuti</span>
+                </a>
+              </div>
+            </div>
+
+            <ul class="form-trust-strip" aria-label="Elementi di fiducia">
+              <li>Showroom a Firenze</li>
+              <li>CE &#183; ISO &#183; SGS</li>
+              <li>5,0 &#9733; Google</li>
+            </ul>
+          </form>
+        </div>
       </div>
     </section>
   </main>

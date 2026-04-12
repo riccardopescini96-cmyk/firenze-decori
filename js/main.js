@@ -471,12 +471,8 @@
   function getGenericSubject(requestType) {
     var normalized = (requestType || '').toLowerCase();
 
-    if (normalized === 'installatore') {
-      return 'Firenze Decori — Richiesta Installatore';
-    }
-
-    if (normalized === 'rivenditore') {
-      return 'Firenze Decori — Richiesta Rivenditore';
+    if (normalized === 'professionista' || normalized === 'installatore' || normalized === 'rivenditore') {
+      return 'Firenze Decori — Richiesta Professionista';
     }
 
     if (normalized === 'privato') {
@@ -515,34 +511,57 @@
     ].join('\n');
   }
 
-  function syncGenericMessagePlaceholder(form) {
-    var requestTypeNode = form.querySelector('[name="request_type"]');
-    var messageNode = form.querySelector('textarea[name="message"]');
+  function initUnifiedFormToggle() {
+    var toggles = document.querySelectorAll('.unified-mode-toggle');
 
-    if (!requestTypeNode || !messageNode) {
-      return;
-    }
+    toggles.forEach(function (toggle) {
+      var buttons = toggle.querySelectorAll('.unified-mode-btn');
+      var hiddenInput = toggle.querySelector('input[name="request_type"]');
+      var form = toggle.closest('form');
+      var companyField = form ? form.querySelector('[data-company-field]') : null;
 
-    function updatePlaceholder() {
-      var requestType = (requestTypeNode.value || '').toLowerCase();
-      var isProfessional = requestType === 'installatore' || requestType === 'rivenditore';
+      function applyMode(mode) {
+        var normalizedMode = mode === 'professionista' ? 'professionista' : 'privato';
 
-      messageNode.placeholder = isProfessional
-        ? 'Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e materiali tecnici.'
-        : 'Indicaci ambiente, metratura e finitura che preferisci: ti aiutiamo a definire il materiale necessario.';
-    }
+        buttons.forEach(function (button) {
+          var isActive = button.getAttribute('data-mode') === normalizedMode;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
 
-    requestTypeNode.addEventListener('change', updatePlaceholder);
-    updatePlaceholder();
-  }
+        if (hiddenInput) {
+          hiddenInput.value = normalizedMode;
+        }
 
-  function setMessagePlaceholder(form, placeholder) {
-    var messageNode = form.querySelector('textarea[name="message"]');
-    if (!messageNode || !placeholder) {
-      return;
-    }
+        if (companyField) {
+          var isProfessional = normalizedMode === 'professionista';
+          var companyInput = companyField.querySelector('input');
 
-    messageNode.placeholder = placeholder;
+          companyField.classList.toggle('is-hidden', !isProfessional);
+          companyField.hidden = !isProfessional;
+
+          if (companyInput) {
+            companyInput.required = isProfessional;
+            if (!isProfessional) {
+              companyInput.value = '';
+            }
+          }
+        }
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          applyMode(button.getAttribute('data-mode'));
+        });
+      });
+
+      var activeButton = toggle.querySelector('.unified-mode-btn.is-active');
+      var initialMode = hiddenInput && hiddenInput.value
+        ? hiddenInput.value
+        : (activeButton ? activeButton.getAttribute('data-mode') : 'privato');
+
+      applyMode(initialMode);
+    });
   }
 
   function buildThankYouUrl(form, payload, targetName) {
@@ -574,10 +593,11 @@
 
   function buildFormPayload(form, targetName) {
     var messageValue = getFieldValue(form, 'message') || 'Richiedo informazioni.';
+    var companyValue = getFieldValue(form, 'company_name') || getFieldValue(form, 'company');
     var payload = {
       first_name: getFieldValue(form, 'first_name'),
-      last_name: getFieldValue(form, 'last_name'),
       email: getFieldValue(form, 'email'),
+      company: companyValue,
       message: messageValue,
       form_origin: getFieldValue(form, 'form_origin'),
       page_url: window.location.href,
@@ -594,7 +614,7 @@
     }
 
     if (targetName === 'b2b') {
-      payload.company = getFieldValue(form, 'company');
+      payload.request_type = getFieldValue(form, 'request_type') || 'professionista';
     }
 
     payload.email_preview = buildEmailPreview(payload);
@@ -609,23 +629,16 @@
     return payload;
   }
 
-  function attachFormspree(formSelector, endpointUrl, targetName, options) {
+  function attachFormspree(formSelector, endpointUrl, targetName) {
     var form = document.querySelector(formSelector);
     if (!form) {
       return;
     }
 
-    var config = options || {};
     var statusNode = ensureFormStatusNode(form);
 
     form.setAttribute('action', endpointUrl);
     form.setAttribute('method', 'POST');
-
-    if (targetName === 'generico') {
-      syncGenericMessagePlaceholder(form);
-    } else if (config.messagePlaceholder) {
-      setMessagePlaceholder(form, config.messagePlaceholder);
-    }
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -700,12 +713,7 @@
 
   function initContactForms() {
     attachFormspree('#form-generico', 'https://formspree.io/f/mvzbyyjn', 'generico');
-    attachFormspree('#form-b2b', 'https://formspree.io/f/xeelddyr', 'b2b', {
-      messagePlaceholder: 'Descrivi la tua attività, volumi indicativi e area di lavoro: ti inviamo condizioni e schede tecniche.'
-    });
-    attachFormspree('#form-b2b-v2', 'https://formspree.io/f/xeelddyr', 'b2b', {
-      messagePlaceholder: 'Indica attività, finiture o codici di interesse, metratura e tempistica.'
-    });
+    attachFormspree('#form-b2b', 'https://formspree.io/f/xeelddyr', 'b2b');
   }
 
   function initFaqTabs() {
@@ -782,7 +790,7 @@
   function getThankYouAudienceLabel(audience) {
     var normalized = (audience || '').toLowerCase();
 
-    if (normalized === 'installatore' || normalized === 'rivenditore' || normalized === 'b2b') {
+    if (normalized === 'professionista' || normalized === 'installatore' || normalized === 'rivenditore' || normalized === 'b2b') {
       return 'professionisti (B2B)';
     }
 
@@ -974,7 +982,7 @@
 
       if (pageKey === 'rivestimenti-interni.html') {
         return {
-          href: 'contatti.html#contatti',
+          href: localContactsNode ? '#contatti' : 'contatti.html#contatti',
           label: 'Oppure invia la richiesta dal modulo'
         };
       }
@@ -1357,6 +1365,7 @@
     initHomeGallerySlideshow();
     initFaqTabs();
     initPanelCalculator();
+    initUnifiedFormToggle();
     initContactForms();
     initThankYouPage();
     initSmartMediaPreload();
