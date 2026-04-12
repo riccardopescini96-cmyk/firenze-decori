@@ -78,21 +78,38 @@
         return '';
       }
 
-      var cleanHref = href.split('?')[0].split('#')[0];
+      var normalizedUrl;
+      var pathname;
+      var segments;
+      var lastSegment;
 
-      if (!cleanHref) {
+      try {
+        normalizedUrl = new URL(href, window.location.href);
+      } catch (error) {
+        return '';
+      }
+
+      pathname = normalizedUrl.pathname || '';
+
+      if (!pathname || pathname === '/') {
         return 'index.html';
       }
 
-      var segments = cleanHref.split('/').filter(Boolean);
-      var lastSegment = segments[segments.length - 1] || '';
+      segments = pathname.split('/').filter(Boolean);
+      lastSegment = segments[segments.length - 1] || '';
 
       if (!lastSegment) {
         return 'index.html';
       }
 
+      if (/^index\.html?$/i.test(lastSegment)) {
+        return 'index.html';
+      }
+
       if (!/\.html?$/i.test(lastSegment)) {
-        return '';
+        return pathname.charAt(pathname.length - 1) === '/' && segments.length === 1
+          ? 'index.html'
+          : '';
       }
 
       return lastSegment.toLowerCase();
