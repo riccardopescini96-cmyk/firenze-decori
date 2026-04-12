@@ -596,6 +596,7 @@
     var companyValue = getFieldValue(form, 'company_name') || getFieldValue(form, 'company');
     var payload = {
       first_name: getFieldValue(form, 'first_name'),
+      last_name: getFieldValue(form, 'last_name'),
       email: getFieldValue(form, 'email'),
       company: companyValue,
       message: messageValue,
@@ -996,8 +997,8 @@
 
       if (pageKey === 'privacy-policy.html' || pageKey === 'cookie-policy.html') {
         return {
-          href: 'contatti.html#contatti',
-          label: 'Oppure vai ai contatti'
+          href: localHref,
+          label: localContactsNode ? 'Oppure compila il modulo' : 'Oppure vai ai contatti'
         };
       }
 
