@@ -6160,29 +6160,29 @@ textarea:focus-visible {
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-trust {
-  width: min(100%, 660px);
-  gap: 0.48rem 1rem;
+  width: min(100%, 760px);
+  gap: 0.6rem 1rem;
+  font-size: 0.94rem;
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta li {
-  display: grid;
-  grid-template-columns: 14px minmax(0, 1fr);
-  align-items: start;
-  justify-content: start;
-  gap: 0.5rem;
-  width: min(100%, 320px);
-  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: auto;
+  text-align: center;
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta svg {
-  margin-top: 0.18rem;
+  margin-top: 0;
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta span {
-  display: block;
+  display: inline;
   min-width: 0;
-  line-height: 1.45;
-  text-wrap: pretty;
+  line-height: inherit;
+  text-wrap: balance;
 }
 
 .page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-meta a {
