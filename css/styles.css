@@ -6848,7 +6848,7 @@ textarea:focus-visible {
   color: #fff;
 }
 
-.unified-form textarea {
+.contact-form.unified-form textarea {
   min-height: 96px;
 }
 
@@ -6912,4 +6912,15 @@ textarea:focus-visible {
 .page-installatori .unified-form[data-default-mode="professionista"] .unified-mode-btn[data-mode="privato"]:not(.is-active) {
   background: rgba(255,255,255,0.82);
   color: var(--text-soft);
+}
+
+.page-faq .faq-contact .container,
+.page-come-funziona .come-funziona-contacts .container,
+.page-installatori .installer-contact .container,
+.page-superfici .b2c-contact .container {
+  max-width: 960px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
