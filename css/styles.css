@@ -6335,10 +6335,6 @@ textarea:focus-visible {
 }
 
 @media (max-width: 767px) {
-  body.has-mobile-cta-sticky-visible {
-    padding-bottom: calc(var(--mobile-cta-sticky-height, 0px) + 0.4rem);
-  }
-
   .hero-cta-showcase {
     padding: 1rem 0.9rem;
     border-radius: 18px;
