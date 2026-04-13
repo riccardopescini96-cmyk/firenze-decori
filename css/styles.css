@@ -697,6 +697,14 @@ section h2::after {
   overflow: hidden;
 }
 
+.page-home .hero-slider .gallery-grid[data-mobile-slideshow] figure:first-child {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  overflow: visible;
+  contain: none;
+}
+
 .page-home .hero-slider .gallery-grid picture {
   display: block;
   width: 100%;
