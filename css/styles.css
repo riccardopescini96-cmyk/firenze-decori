@@ -1,7 +1,7 @@
 ﻿
 :root {
-  --font-sans: "Manrope", "Segoe UI", "Trebuchet MS", sans-serif;
-  --font-serif: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
+  --font-sans: "Aptos", "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
   --bg: #f5f2ec;
   --bg-soft: #ece6db;
   --surface: #ffffff;

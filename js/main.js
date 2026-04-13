@@ -6,6 +6,21 @@
   var navWrapper = document.querySelector('.nav-wrapper');
   var desktopMinWidth = 768;
 
+  function runWhenIdle(callback, timeout) {
+    var maxWait = typeof timeout === 'number' ? timeout : 1200;
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(function () {
+        callback();
+      }, {
+        timeout: maxWait
+      });
+      return;
+    }
+
+    window.setTimeout(callback, 1);
+  }
+
   function isDesktopViewport() {
     return window.innerWidth >= desktopMinWidth;
   }
@@ -334,6 +349,7 @@
 
     var input = calculator.querySelector('[name="area_m2"]');
     var resultNode = calculator.querySelector('.panel-calc-result');
+    var whatsappCta = calculator.querySelector('.panel-calc-wa-cta');
     var panelAreaM2 = 1.22 * 2.8;
 
     if (!input || !resultNode) {
@@ -344,6 +360,14 @@
       return value.toFixed(2).replace('.', ',');
     }
 
+    function syncCalculatorCta() {
+      if (!whatsappCta) {
+        return;
+      }
+
+      whatsappCta.hidden = !resultNode.classList.contains('is-ready');
+    }
+
     function updateResult(shouldTrack) {
       var normalized = (input.value || '').replace(',', '.');
       var areaM2 = Number(normalized);
@@ -351,6 +375,7 @@
       if (!Number.isFinite(areaM2) || areaM2 <= 0) {
         resultNode.classList.remove('is-ready');
         resultNode.textContent = 'Inserisci i m2 e calcola i pannelli necessari.';
+        syncCalculatorCta();
         return;
       }
 
@@ -362,6 +387,7 @@
         'Per <strong>' + formatM2(areaM2) + ' m2</strong> servono <strong>' +
         String(panels) + ' pannelli</strong> (copertura ' +
         formatM2(coveredM2) + ' m2).';
+      syncCalculatorCta();
 
       if (shouldTrack) {
         trackEvent('panel_calculator_submit', {
@@ -379,6 +405,8 @@
     input.addEventListener('input', function () {
       updateResult(false);
     });
+
+    syncCalculatorCta();
   }
 
   function setFormStatus(statusNode, message, stateClass) {
@@ -1328,6 +1356,32 @@
     document.head.appendChild(script);
   }
 
+  function initServiceWorker() {
+    function registerServiceWorker() {
+      navigator.serviceWorker.register('sw.js').catch(function () {
+      });
+    }
+
+    if (!('serviceWorker' in navigator)) {
+      return;
+    }
+
+    if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
+      return;
+    }
+
+    if (document.readyState === 'complete') {
+      runWhenIdle(registerServiceWorker, 1600);
+      return;
+    }
+
+    window.addEventListener('load', function () {
+      runWhenIdle(registerServiceWorker, 1600);
+    }, {
+      once: true
+    });
+  }
+
   function initBreadcrumbs() {
     var main = document.querySelector('main');
     if (!main || document.querySelector('.breadcrumbs')) {
@@ -1386,10 +1440,13 @@
     injectBreadcrumbStructuredData(items);
   }
 
-  function initializeApp() {
-    initBreadcrumbs();
+  function initializeCriticalFeatures() {
     initMobileNav();
     setFooterYear();
+  }
+
+  function initializeDeferredFeatures() {
+    initBreadcrumbs();
     initFooterLinks();
     initMobileStickyCta();
     initTrackedClicks();
@@ -1400,6 +1457,15 @@
     initContactForms();
     initThankYouPage();
     initSmartMediaPreload();
+    initServiceWorker();
+  }
+
+  function initializeApp() {
+    initializeCriticalFeatures();
+
+    window.requestAnimationFrame(function () {
+      runWhenIdle(initializeDeferredFeatures, 1400);
+    });
   }
 
   if (document.readyState === 'loading') {
