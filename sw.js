@@ -1,4 +1,4 @@
-const CACHE_NAME = 'firenze-decori-static-v3';
+const CACHE_NAME = 'firenze-decori-static-v4';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
@@ -46,6 +46,8 @@ self.addEventListener('fetch', (event) => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(request);
+    const isCodeAsset = request.destination === 'style' || request.destination === 'script';
+
     const networkResponse = fetch(request)
       .then((response) => {
         if (response && response.ok) {
@@ -54,6 +56,18 @@ self.addEventListener('fetch', (event) => {
 
         return response;
       });
+
+    if (isCodeAsset) {
+      try {
+        return await networkResponse;
+      } catch (error) {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return Response.error();
+      }
+    }
 
     if (cachedResponse) {
       event.waitUntil(networkResponse.catch(() => {}));
