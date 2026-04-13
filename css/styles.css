@@ -151,23 +151,18 @@ main > section > .container {
   align-items: center;
   align-self: center;
   text-decoration: none;
-  height: clamp(43px, 10vw, 56px);
-  max-width: min(75vw, 275px);
+  width: min(75vw, 250px);
+  max-width: 100%;
+  aspect-ratio: 550 / 123;
   flex: 0 1 auto;
   margin-left: 0;
-  padding-block: 0.2rem;
   line-height: 0;
-}
-
-.brand picture {
-  display: contents;
 }
 
 .brand img {
   display: block;
-  width: auto;
+  width: 100%;
   height: 100%;
-  max-width: 100%;
   object-fit: contain;
   object-position: left center;
 }
@@ -310,7 +305,6 @@ body.nav-open {
     radial-gradient(circle at 94% 0%, rgba(200, 164, 107, 0.2), transparent 35%),
     linear-gradient(130deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 229, 0.95));
   box-shadow: var(--shadow-strong);
-  animation: rise-in 0.55s ease both;
 }
 
 .page-home .hero .container {
@@ -934,7 +928,6 @@ section h2::after {
   background: rgba(255, 255, 255, 0.92);
   box-shadow: var(--shadow-soft);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  animation: rise-in 0.45s ease both;
 }
 
 .card:hover {
@@ -4176,17 +4169,6 @@ textarea:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0.01;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 

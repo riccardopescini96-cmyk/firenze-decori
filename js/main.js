@@ -1384,7 +1384,7 @@
 
   function initBreadcrumbs() {
     var main = document.querySelector('main');
-    if (!main || document.querySelector('.breadcrumbs')) {
+    if (!main) {
       return;
     }
 
@@ -1393,7 +1393,7 @@
       return;
     }
 
-    if (getCurrentPageKey() === 'index.html') {
+    if (getCurrentPageKey() === 'index.html' || document.querySelector('.breadcrumbs')) {
       injectBreadcrumbStructuredData(items);
       return;
     }
