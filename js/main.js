@@ -1144,16 +1144,7 @@
 
         document.documentElement.style.setProperty('--mobile-cta-sticky-height', String(stickyState.isVisible ? (stickyNode.offsetHeight || 0) : 0) + 'px');
 
-        if (!window.visualViewport) {
-          document.documentElement.style.setProperty('--mobile-cta-viewport-shift', '0px');
-          return;
-        }
-
-        var layoutHeight = Math.max(window.innerHeight || 0, document.documentElement.clientHeight || 0);
-        var visualViewport = window.visualViewport;
-        var viewportShift = Math.max(0, layoutHeight - (visualViewport.height + visualViewport.offsetTop));
-
-        document.documentElement.style.setProperty('--mobile-cta-viewport-shift', String(viewportShift) + 'px');
+        document.documentElement.style.setProperty('--mobile-cta-viewport-shift', '0px');
       });
     }
 
@@ -1247,11 +1238,6 @@
     window.addEventListener('scroll', queueStickyVisibilityUpdate, { passive: true });
     window.addEventListener('resize', queueStickyMetricsUpdate);
     window.addEventListener('orientationchange', queueStickyMetricsUpdate);
-
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', queueStickyMetricsUpdate);
-      window.visualViewport.addEventListener('scroll', queueStickyMetricsUpdate);
-    }
 
     syncStickyVisibility();
     queueStickyMetricsUpdate();

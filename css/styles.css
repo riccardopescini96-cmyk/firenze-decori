@@ -6436,8 +6436,6 @@ textarea:focus-visible {
     border-top: 1px solid rgba(21, 34, 53, 0.12);
     background: rgba(255, 255, 255, 0.985);
     box-shadow: 0 -8px 22px rgba(12, 21, 35, 0.12);
-    transform: translate3d(0, var(--mobile-cta-viewport-shift, 0px), 0);
-    will-change: transform;
     transition: opacity 180ms ease, visibility 180ms ease;
   }
 
