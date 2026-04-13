@@ -52,7 +52,7 @@ ma vengono mostrate a circa 280 px su mobile e ~500 px su desktop.
 | File | Note |
 |---|---|
 | og-home-preview.jpg | OG image, non ottimizzare troppo (min 1200×630) |
-| logo_last_nav.png | SVG o WebP consigliato |
+| logo.webp | Già convertito in WebP |
 | logo_last.svg | Già ottimale |
 | set.marmo*.jpg | Verificare se usate, altrimenti rimuovere |
 
