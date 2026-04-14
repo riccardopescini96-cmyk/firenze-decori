@@ -694,6 +694,16 @@
     return payload;
   }
 
+  function submitFormNatively(form, statusNode) {
+    if (statusNode) {
+      setFormStatus(statusNode, 'Reindirizzamento al controllo anti-spam...', '');
+    }
+
+    window.setTimeout(function () {
+      HTMLFormElement.prototype.submit.call(form);
+    }, 60);
+  }
+
   function attachFormspree(form) {
     var statusNode = ensureFormStatusNode(form);
     var endpointUrl = (form.getAttribute('action') || '').trim() || DEFAULT_FORMSPREE_ENDPOINT;
@@ -737,6 +747,27 @@
         body: formData
       })
         .then(function (response) {
+          if (response.status === 403) {
+            return response.json()
+              .catch(function () {
+                return {};
+              })
+              .then(function (body) {
+                var errorMessage = (body && body.error ? body.error : '').toLowerCase();
+
+                if (
+                  errorMessage.indexOf('submit via ajax') !== -1 ||
+                  errorMessage.indexOf('custom key') !== -1 ||
+                  errorMessage.indexOf('recaptcha') !== -1
+                ) {
+                  submitFormNatively(form, statusNode);
+                  return;
+                }
+
+                throw new Error('request_failed');
+              });
+          }
+
           if (!response.ok) {
             throw new Error('request_failed');
           }
