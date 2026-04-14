@@ -1,10 +1,12 @@
-const CACHE_NAME = 'firenze-decori-static-v4';
+const CACHE_NAME = 'firenze-decori-static-v6';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/css/styles.min.css',
+  '/css/styles.min.css?v=20260414-final',
   '/js/main.min.js',
-  '/assets/img/logo.webp'
+  '/js/main.min.js?v=20260414-final',
+  '/assets/img/logo.webp?v=20260414-logo'
 ];
 
 self.addEventListener('install', (event) => {
