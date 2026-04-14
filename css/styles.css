@@ -2921,6 +2921,15 @@ textarea:focus-visible {
     margin-right: auto;
   }
 
+  .page-home .home-values-grid {
+    align-items: start;
+  }
+
+  .page-home .home-value-card {
+    height: auto;
+    align-self: start;
+  }
+
   .page-home .home-review-spotlight .container {
     max-width: var(--home-shell-max);
   }
@@ -4284,6 +4293,7 @@ textarea:focus-visible {
 }
 
 .page-rivestimenti .panel-calc-card {
+  --panel-calc-content-width: 560px;
   max-width: 720px;
   margin: 0 auto;
 }
@@ -4293,8 +4303,10 @@ textarea:focus-visible {
   text-align: center;
 }
 
-.page-rivestimenti .panel-calc-form {
-  max-width: 560px;
+.page-rivestimenti .panel-calc-form,
+.page-rivestimenti .panel-calc-result,
+.page-rivestimenti .panel-calc-wa-cta {
+  width: min(100%, var(--panel-calc-content-width));
   margin: 0 auto;
 }
 
@@ -4327,7 +4339,6 @@ textarea:focus-visible {
 }
 
 .page-rivestimenti .panel-calc-wa-cta {
-  max-width: 540px;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
@@ -6906,6 +6917,10 @@ textarea:focus-visible {
   gap: 0;
 }
 
+.page-come-funziona .installer-steps .container {
+  max-width: 1080px;
+}
+
 .cf-step {
   display: flex;
   align-items: flex-start;
@@ -7115,17 +7130,33 @@ textarea:focus-visible {
   .cf-steps-visual {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(0.85rem, 1.35vw, 1rem);
+    gap: clamp(0.95rem, 1.6vw, 1.25rem);
     align-items: stretch;
   }
 
   .cf-step {
     height: 100%;
-    padding: clamp(1rem, 1.5vw, 1.18rem);
+    padding: clamp(1.05rem, 1.7vw, 1.35rem);
+    gap: clamp(0.95rem, 1.25vw, 1.15rem);
     border: 1px solid rgba(21, 34, 53, 0.14);
     border-radius: var(--radius-m);
     background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 228, 0.9));
     box-shadow: var(--shadow-soft);
+  }
+
+  .cf-step-body {
+    min-width: 0;
+  }
+
+  .cf-step-body h3 {
+    font-size: clamp(1.18rem, 0.58vw + 1.02rem, 1.34rem);
+    line-height: 1.16;
+    text-wrap: balance;
+  }
+
+  .cf-step-body p {
+    font-size: 1rem;
+    line-height: 1.62;
   }
 
   .page-come-funziona .video-presentation-actions .btn {
@@ -7149,6 +7180,12 @@ textarea:focus-visible {
 @media (min-width: 1024px) {
   :root {
     --space-section: clamp(2.7rem, 3.8vw, 3.65rem);
+  }
+
+  .page-rivestimenti .b2c-hero-highlights li:last-child {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.325rem);
+    justify-self: center;
   }
 
   .site-header .container {
@@ -7231,10 +7268,6 @@ textarea:focus-visible {
 
   .page-installatori .proof-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cf-steps-visual {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .page-faq .faq-tabs {
