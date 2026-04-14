@@ -7054,3 +7054,228 @@ textarea:focus-visible {
   text-align: center;
   box-shadow: 0 6px 14px rgba(16,30,47,0.07);
 }
+
+@media (min-width: 768px) {
+  .footer-grid {
+    align-items: start;
+  }
+
+  .contact-form-card {
+    padding: clamp(1.35rem, 2.35vw, 1.85rem);
+  }
+
+  .contact-form-card .contact-form {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-form-row {
+    align-items: start;
+    gap: 0.9rem;
+  }
+
+  .contact-form-card .btn-primary {
+    width: min(100%, 320px);
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+  }
+
+  .unified-mode-toggle {
+    width: min(100%, 420px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .map-content-grid {
+    align-items: start;
+  }
+
+  .map-iframe-wrapper,
+  .map-iframe-wrapper iframe {
+    min-height: 460px;
+  }
+
+  .page-faq .faq-shell .section-intro,
+  .page-installatori-v2 .installer-overview .section-intro,
+  .page-installatori-v2 .installer-steps .section-intro,
+  .page-installatori-v2 .installer-features .section-intro {
+    max-width: 60ch;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .page-installatori .proof-grid {
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+  }
+
+  .cf-steps-visual {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.35vw, 1rem);
+    align-items: stretch;
+  }
+
+  .cf-step {
+    height: 100%;
+    padding: clamp(1rem, 1.5vw, 1.18rem);
+    border: 1px solid rgba(21, 34, 53, 0.14);
+    border-radius: var(--radius-m);
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(245, 239, 228, 0.9));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .page-come-funziona .video-presentation-actions .btn {
+    width: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-installatori-v2 .b2b-profile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-links.footer-contacts {
+    justify-self: start;
+    width: 100%;
+    max-width: 480px;
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-section: clamp(2.7rem, 3.8vw, 3.65rem);
+  }
+
+  .site-header .container {
+    max-width: var(--max-width);
+    gap: 0.9rem;
+  }
+
+  .brand {
+    flex: 0 0 auto;
+  }
+
+  .nav-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-left: auto;
+  }
+
+  .nav-list {
+    justify-content: flex-end;
+  }
+
+  .hero-cta-showcase {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-home .hero-cta-pills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(100%, 620px);
+  }
+
+  .page-home .hero-cta-pills li:last-child {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .hero-cta-showcase .hero-cta,
+  .page-installatori-v2 .hero-cta-showcase-b2b .hero-cta {
+    justify-self: center;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .hero-cta-primary-stack,
+  .hero-cta-secondary-single,
+  .page-installatori-v2 .hero-cta-showcase-b2b .hero-cta-primary,
+  .page-installatori-v2 .hero-cta-showcase-b2b .b2b-hero-secondary {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-primary-stack .btn {
+    width: fit-content;
+    max-width: min(100%, 420px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-secondary-single .btn {
+    width: fit-content;
+    max-width: min(100%, 280px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-showcase .hero-heading-block > p,
+  .page-installatori-v2 .hero-cta-showcase-b2b .hero-subtitle {
+    max-width: 58ch;
+  }
+
+  .page-installatori-v2 .b2b-profile-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-installatori .proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cf-steps-visual {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .page-faq .faq-tabs {
+    justify-content: center;
+    gap: 0.55rem;
+  }
+
+  .page-faq .faq-tab {
+    white-space: nowrap;
+    padding: 0.42rem 0.82rem;
+    font-size: 0.89rem;
+  }
+
+  .page-faq .faq-list {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .map-info-panel {
+    padding: clamp(1.15rem, 1.7vw, 1.45rem);
+  }
+
+  .page-contatti main > section {
+    padding-top: clamp(2.3rem, 3vw, 2.9rem);
+    padding-bottom: clamp(2.3rem, 3vw, 2.9rem);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .brand {
+    height: 60px;
+    max-width: 290px;
+  }
+
+  .nav-list {
+    gap: 0;
+  }
+
+  .nav-list a {
+    padding: 0.56rem 0.62rem;
+    font-size: 0.92rem;
+  }
+}
