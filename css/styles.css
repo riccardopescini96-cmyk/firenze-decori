@@ -2721,6 +2721,40 @@ textarea {
   font-size: 0.96rem;
 }
 
+.footer-company-info {
+  margin-top: 1.6rem;
+  padding-top: 1rem;
+  padding-bottom: calc(var(--mobile-cta-sticky-height, 0px) + 0.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.footer-company-info p {
+  margin: 0 0 0.3rem;
+  color: #8fa3bb;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.footer-company-info p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-company-info p span {
+  display: inline-block;
+}
+
+.footer-company-info p span + span::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.75em;
+  margin: 0 0.6em;
+  background: rgba(143, 163, 187, 0.45);
+  vertical-align: middle;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
