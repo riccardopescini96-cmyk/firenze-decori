@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /form-inviato.html
 
 Sitemap: https://www.firenzedecori.it/sitemap.xml

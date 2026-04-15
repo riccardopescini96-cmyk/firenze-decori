@@ -3,7 +3,11 @@
     "allow": [
       "Bash(ls /c/Users/imric/OneDrive/Desktop/firenze-decori/*.html)",
       "Bash(node -e ':*)",
-      "Bash(ls c:/firenze-decori/assets/img/logo*)"
+      "Bash(ls c:/firenze-decori/assets/img/logo*)",
+      "Bash(ls /c/firenze-decori/*.html)",
+      "Bash(grep -h \"<title>\\\\|<meta name=\\\\\"robots\\\\\"\\\\|canonical\\\\|noindex\" /c/firenze-decori/*.html)",
+      "Bash(sed 's/^\\\\s*//')",
+      "Bash(grep -h \"<meta name=\\\\\"description\\\\\"\" /c/firenze-decori/*.html)"
     ]
   }
 }
