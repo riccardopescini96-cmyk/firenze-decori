@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /form-inviato/
 
-Sitemap: https://www.firenzedecori.it/sitemap.xml
+Sitemap: https://firenze-decori.it/sitemap.xml
