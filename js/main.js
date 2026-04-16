@@ -5,6 +5,57 @@
   var navToggle = document.querySelector('.nav-toggle');
   var navWrapper = document.querySelector('.nav-wrapper');
   var desktopMinWidth = 768;
+  var PAGE_KEY_TO_ROUTE = {
+    index: '/',
+    'fornitura-professionisti': '/fornitura-professionisti/',
+    'rivestimenti-interni': '/rivestimenti-interni/',
+    faq: '/faq/',
+    'come-funziona': '/come-funziona/',
+    contatti: '/contatti/',
+    'form-inviato': '/form-inviato/',
+    'privacy-policy': '/privacy-policy/',
+    'cookie-policy': '/cookie-policy/'
+  };
+
+  function normalizePageSegment(segment) {
+    return (segment || '').toLowerCase().replace(/\.[a-z0-9]+$/i, '');
+  }
+
+  function resolvePageKeyFromPathname(pathname) {
+    var cleanPath = (pathname || '').split('?')[0].split('#')[0];
+    var segments;
+    var lastSegment;
+
+    if (!cleanPath || cleanPath === '/') {
+      return 'index';
+    }
+
+    segments = cleanPath.split('/').filter(Boolean);
+
+    if (!segments.length) {
+      return 'index';
+    }
+
+    lastSegment = segments[segments.length - 1] || '';
+
+    if (!lastSegment) {
+      return 'index';
+    }
+
+    lastSegment = normalizePageSegment(lastSegment);
+
+    if (lastSegment === 'index') {
+      return segments.length === 1
+        ? 'index'
+        : normalizePageSegment(segments[segments.length - 2] || '');
+    }
+
+    return lastSegment;
+  }
+
+  function getRoutePath(pageKey) {
+    return PAGE_KEY_TO_ROUTE[pageKey] || '/';
+  }
 
   function runWhenIdle(callback, timeout) {
     var maxWait = typeof timeout === 'number' ? timeout : 1200;
@@ -94,9 +145,6 @@
       }
 
       var normalizedUrl;
-      var pathname;
-      var segments;
-      var lastSegment;
 
       try {
         normalizedUrl = new URL(href, window.location.href);
@@ -104,37 +152,14 @@
         return '';
       }
 
-      pathname = normalizedUrl.pathname || '';
-
-      if (!pathname || pathname === '/') {
-        return 'index.html';
-      }
-
-      segments = pathname.split('/').filter(Boolean);
-      lastSegment = segments[segments.length - 1] || '';
-
-      if (!lastSegment) {
-        return 'index.html';
-      }
-
-      if (/^index\.html?$/i.test(lastSegment)) {
-        return 'index.html';
-      }
-
-      if (!/\.html?$/i.test(lastSegment)) {
-        return pathname.charAt(pathname.length - 1) === '/' && segments.length === 1
-          ? 'index.html'
-          : '';
-      }
-
-      return lastSegment.toLowerCase();
+      return resolvePageKeyFromPathname(normalizedUrl.pathname || '');
     }
 
     footerLinks.forEach(function (link) {
       var href = link.getAttribute('href') || '';
       var hasHash = href.indexOf('#') !== -1;
       var linkPageKey = getLinkPageKey(href);
-      var shouldRemove = linkPageKey === 'form-inviato.html' || (!hasHash && linkPageKey === currentPageKey);
+      var shouldRemove = linkPageKey === 'form-inviato' || (!hasHash && linkPageKey === currentPageKey);
 
       if (!shouldRemove) {
         return;
@@ -632,7 +657,7 @@
   }
 
   function buildThankYouUrl(form, payload) {
-    var thankYouPath = form.getAttribute('data-thank-you') || 'form-inviato.html';
+    var thankYouPath = form.getAttribute('data-thank-you') || '/form-inviato/';
     var thankYouUrl = new URL(thankYouPath, window.location.href);
     var firstName = payload.first_name || '';
     var requestType = payload.request_type || '';
@@ -993,55 +1018,55 @@
     };
     var stickyRevealOffset = 36;
     var stickyConfigMap = {
-      'index.html': {
+      index: {
         enabled: true,
         label: 'Vuoi informazioni o un preventivo?',
         secondaryKind: 'call',
         secondaryLabel: 'Chiama',
         note: ''
       },
-      'rivestimenti-interni.html': {
+      'rivestimenti-interni': {
         enabled: true,
         label: 'Vuoi informazioni o un preventivo?',
         secondaryKind: 'call',
         secondaryLabel: 'Chiama',
         note: ''
       },
-      'come-funziona.html': {
+      'come-funziona': {
         enabled: true,
         label: 'Vuoi informazioni o un preventivo?',
         secondaryKind: 'call',
         secondaryLabel: 'Chiama',
         note: ''
       },
-      'faq.html': {
+      faq: {
         enabled: true,
         label: 'Hai ancora una domanda?',
         secondaryKind: 'call',
         secondaryLabel: 'Chiama',
         note: ''
       },
-      'fornitura-professionisti.html': {
+      'fornitura-professionisti': {
         enabled: true,
         label: 'Richiedi catalogo o preventivo B2B',
         secondaryKind: 'call',
         secondaryLabel: 'Chiama',
         note: ''
       },
-      'contatti.html': {
+      contatti: {
         enabled: true,
         label: 'Vuoi informazioni o un preventivo?',
         secondaryKind: 'call',
         secondaryLabel: 'Chiama',
         note: ''
       },
-      'form-inviato.html': {
+      'form-inviato': {
         enabled: false
       },
-      'privacy-policy.html': {
+      'privacy-policy': {
         enabled: false
       },
-      'cookie-policy.html': {
+      'cookie-policy': {
         enabled: false
       }
     };
@@ -1069,30 +1094,30 @@
 
     function getContactConfig() {
       var localContactsNode = document.getElementById('contatti');
-      var localHref = localContactsNode ? '#contatti' : 'contatti.html#contatti';
+      var localHref = localContactsNode ? '#contatti' : '/contatti/#contatti';
 
-      if (pageKey === 'fornitura-professionisti.html') {
+      if (pageKey === 'fornitura-professionisti') {
         return {
           href: '#contatti',
           label: 'Oppure compila il form B2B'
         };
       }
 
-      if (pageKey === 'rivestimenti-interni.html') {
+      if (pageKey === 'rivestimenti-interni') {
         return {
-          href: localContactsNode ? '#contatti' : 'contatti.html#contatti',
+          href: localContactsNode ? '#contatti' : '/contatti/#contatti',
           label: 'Oppure invia la richiesta dal modulo'
         };
       }
 
-      if (pageKey === 'form-inviato.html') {
+      if (pageKey === 'form-inviato') {
         return {
-          href: 'contatti.html#contatti',
+          href: '/contatti/#contatti',
           label: 'Oppure invia una nuova richiesta'
         };
       }
 
-      if (pageKey === 'privacy-policy.html' || pageKey === 'cookie-policy.html') {
+      if (pageKey === 'privacy-policy' || pageKey === 'cookie-policy') {
         return {
           href: localHref,
           label: localContactsNode ? 'Oppure compila il modulo' : 'Oppure vai ai contatti'
@@ -1323,38 +1348,23 @@
   }
 
   function getCurrentPageKey() {
-    var pathname = window.location.pathname || '';
-    var cleanPath = pathname.split('?')[0].split('#')[0];
-
-    if (!cleanPath || cleanPath === '/') {
-      return 'index.html';
-    }
-
-    var segments = cleanPath.split('/').filter(Boolean);
-    var lastSegment = segments[segments.length - 1] || '';
-
-    if (!lastSegment || !/\.html?$/i.test(lastSegment)) {
-      return 'index.html';
-    }
-
-    return lastSegment.toLowerCase();
+    return resolvePageKeyFromPathname(window.location.pathname || '');
   }
 
   function getBreadcrumbItems() {
     var pageMap = {
-      'index.html': 'Home',
-      'fornitura-professionisti.html': 'Fornitura professionisti',
-      'fornitura-professionisti-v2.html': 'Fornitura professionisti',
-      'rivestimenti-interni.html': 'Rivestimenti interni',
-      'faq.html': 'FAQ',
-      'come-funziona.html': 'Come funziona',
-      'contatti.html': 'Contatti',
-      'form-inviato.html': 'Form inviato'
+      index: 'Home',
+      'fornitura-professionisti': 'Fornitura professionisti',
+      'rivestimenti-interni': 'Rivestimenti interni',
+      faq: 'FAQ',
+      'come-funziona': 'Come funziona',
+      contatti: 'Contatti',
+      'form-inviato': 'Form inviato'
     };
     var pageKey = getCurrentPageKey();
-    var items = [{ name: 'Home', path: 'index.html' }];
+    var items = [{ name: 'Home', path: '/' }];
 
-    if (pageKey !== 'index.html') {
+    if (pageKey !== 'index') {
       var currentLabel = pageMap[pageKey];
 
       if (!currentLabel) {
@@ -1364,7 +1374,7 @@
 
       items.push({
         name: currentLabel,
-        path: pageKey
+        path: getRoutePath(pageKey)
       });
     }
 
@@ -1383,9 +1393,9 @@
 
     var siteBaseUrl = 'https://www.firenzedecori.it';
     var listItems = items.map(function (item, index) {
-      var itemUrl = item.path === 'index.html'
+      var itemUrl = item.path === '/'
         ? siteBaseUrl + '/'
-        : siteBaseUrl + '/' + item.path;
+        : siteBaseUrl + item.path;
 
       return {
         '@type': 'ListItem',
@@ -1409,7 +1419,7 @@
 
   function initServiceWorker() {
     function registerServiceWorker() {
-      navigator.serviceWorker.register('sw.js').catch(function () {
+      navigator.serviceWorker.register('/sw.js').catch(function () {
       });
     }
 
@@ -1444,7 +1454,7 @@
       return;
     }
 
-    if (getCurrentPageKey() === 'index.html' || document.querySelector('.breadcrumbs')) {
+    if (getCurrentPageKey() === 'index' || document.querySelector('.breadcrumbs')) {
       injectBreadcrumbStructuredData(items);
       return;
     }

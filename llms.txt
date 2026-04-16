@@ -7,11 +7,11 @@ Firenze Decori vende pannelli in PVC ad effetto marmo, pietra e venature per riv
 ## Pagine principali
 
 - [Home](https://www.firenzedecori.it/): Panoramica del sistema, galleria finiture, percorso guidato privati/professionisti, contatto rapido.
-- [Rivestimenti interni](https://www.firenzedecori.it/rivestimenti-interni.html): Soluzioni per privati — rinnovo pareti di casa senza demolizione, calcolatore pannelli, catalogo PDF scaricabile.
-- [Fornitura professionisti](https://www.firenzedecori.it/fornitura-professionisti.html): Fornitura B2B per installatori, architetti, showroom e imprese edili — certificazioni, preventivi e campioni in 24 ore.
-- [Come funziona](https://www.firenzedecori.it/come-funziona.html): Spiegazione del processo passo passo dal sopralluogo alla parete finita, video dimostrativo.
-- [FAQ](https://www.firenzedecori.it/faq.html): Risposte a domande frequenti su installazione, dimensioni, certificazioni, ordini privati e fornitura B2B.
-- [Contatti](https://www.firenzedecori.it/contatti.html): Showroom a Firenze, contatto via WhatsApp, telefono o form online.
+- [Rivestimenti interni](https://www.firenzedecori.it/rivestimenti-interni/): Soluzioni per privati — rinnovo pareti di casa senza demolizione, calcolatore pannelli, catalogo PDF scaricabile.
+- [Fornitura professionisti](https://www.firenzedecori.it/fornitura-professionisti/): Fornitura B2B per installatori, architetti, showroom e imprese edili — certificazioni, preventivi e campioni in 24 ore.
+- [Come funziona](https://www.firenzedecori.it/come-funziona/): Spiegazione del processo passo passo dal sopralluogo alla parete finita, video dimostrativo.
+- [FAQ](https://www.firenzedecori.it/faq/): Risposte a domande frequenti su installazione, dimensioni, certificazioni, ordini privati e fornitura B2B.
+- [Contatti](https://www.firenzedecori.it/contatti/): Showroom a Firenze, contatto via WhatsApp, telefono o form online.
 
 ## Risorse
 
