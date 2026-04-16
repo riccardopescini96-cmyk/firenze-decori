@@ -49,10 +49,15 @@
           "@id": "https://firenze-decori.it/#organization",
           "name": "Firenze Decori",
           "url": "https://firenze-decori.it/",
-          "logo": "https://firenze-decori.it/assets/img/logo.webp?v=20260414-logo",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://firenze-decori.it/assets/img/logo.webp",
+            "width": 440,
+            "height": 112
+          },
           "image": "https://firenze-decori.it/assets/img/og-home-preview.jpg",
           "email": "firenzedecori@gmail.com",
-          "telephone": "+39 328 341 6871"
+          "telephone": "+393283416871"
         },
         {
           "@type": "WebPage",
@@ -61,42 +66,54 @@
           "name": "Come funziona il sistema pannelli PVC | Firenze Decori - Firenze",
           "description": "Scopri come funziona il sistema Firenze Decori: dal sopralluogo alla parete finita in pochi passi, senza demolire nulla. Guarda il video e richiedi il tuo preventivo.",
           "inLanguage": "it-IT",
+          "isPartOf": {
+            "@id": "https://firenze-decori.it/#website"
+          },
           "about": {
             "@id": "https://firenze-decori.it/#organization"
           }
-        },
-        {
-          "@type": "LocalBusiness",
-          "name": "Firenze Decori",
-          "url": "https://firenze-decori.it/",
-          "telephone": "+393283416871",
-          "logo": "https://firenze-decori.it/assets/img/logo.webp?v=20260414-logo",
-          "image": "https://firenze-decori.it/assets/img/og-home-preview.jpg",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Via Francesco Datini, 26A rosso",
-            "addressLocality": "Firenze",
-            "addressRegion": "FI",
-            "postalCode": "50126",
-            "addressCountry": "IT"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 43.75995165260009,
-            "longitude": 11.287960368071245
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              "opens": "09:00",
-              "closes": "19:00"
-            }
-          ],
-          "description": "Come funziona il sistema Firenze Decori per rivestire pareti con pannelli PVC effetto marmo senza demolizione, con posa facile e supporto tecnico a Firenze.",
-          "hasMap": "https://maps.app.goo.gl/c53DYYNknxy6KXAZ9"
         }
       ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Firenze Decori",
+      "url": "https://firenze-decori.it/",
+      "telephone": "+393283416871",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://firenze-decori.it/assets/img/logo.webp",
+        "width": 440,
+        "height": 112
+      },
+      "image": "https://firenze-decori.it/assets/img/og-home-preview.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Francesco Datini, 26A rosso",
+        "addressLocality": "Firenze",
+        "addressRegion": "FI",
+        "postalCode": "50126",
+        "addressCountry": "IT"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.75995165260009,
+        "longitude": 11.287960368071245
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "description": "Come funziona il sistema Firenze Decori per rivestire pareti con pannelli PVC effetto marmo senza demolizione, con posa facile e supporto tecnico a Firenze.",
+      "hasMap": "https://maps.app.goo.gl/c53DYYNknxy6KXAZ9"
     }
   </script>
 
