@@ -180,7 +180,10 @@
       return;
     }
 
-    window.dataLayer = window.dataLayer || [];
+    if (!window.dataLayer || typeof window.dataLayer.push !== 'function') {
+      return;
+    }
+
     window.dataLayer.push({
       event: 'ui_interaction',
       action: name,
