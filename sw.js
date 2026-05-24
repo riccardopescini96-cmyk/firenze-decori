@@ -1,10 +1,10 @@
-const CACHE_NAME = 'firenze-decori-static-v7';
+const CACHE_NAME = 'firenze-decori-static-v8';
 const PRECACHE_URLS = [
   '/',
   '/css/styles.min.css',
-  '/css/styles.min.css?v=20260414-final',
+  '/css/styles.min.css?v=20260524-article',
   '/js/main.min.js',
-  '/js/main.min.js?v=20260414-final',
+  '/js/main.min.js?v=20260524-article',
   '/assets/img/logo.webp?v=20260414-logo'
 ];
 

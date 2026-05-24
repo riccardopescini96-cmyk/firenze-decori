@@ -12,6 +12,7 @@
     faq: '/faq/',
     'come-funziona': '/come-funziona/',
     contatti: '/contatti/',
+    'rinnovare-bagno-senza-demolire': '/news/rinnovare-bagno-senza-demolire/',
     'form-inviato': '/form-inviato/',
     'privacy-policy': '/privacy-policy/',
     'cookie-policy': '/cookie-policy/'
@@ -1063,6 +1064,13 @@
         secondaryLabel: 'Chiama',
         note: ''
       },
+      'rinnovare-bagno-senza-demolire': {
+        enabled: true,
+        label: 'Vuoi rinnovare il bagno senza demolire?',
+        secondaryKind: 'call',
+        secondaryLabel: 'Chiama',
+        note: ''
+      },
       'form-inviato': {
         enabled: false
       },
@@ -1362,6 +1370,7 @@
       faq: 'FAQ',
       'come-funziona': 'Come funziona',
       contatti: 'Contatti',
+      'rinnovare-bagno-senza-demolire': 'Rinnovare il bagno senza demolire',
       'form-inviato': 'Form inviato'
     };
     var pageKey = getCurrentPageKey();
@@ -1394,7 +1403,7 @@
       existingNode.remove();
     }
 
-    var siteBaseUrl = 'https://www.firenzedecori.it';
+    var siteBaseUrl = 'https://firenze-decori.it';
     var listItems = items.map(function (item, index) {
       var itemUrl = item.path === '/'
         ? siteBaseUrl + '/'
